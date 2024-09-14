@@ -2,6 +2,8 @@ import React from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import Document from "./components/document";
+
 import { NextUIProvider } from "@nextui-org/react";
 import App from "./App.jsx";
 import "./index.css";
@@ -26,11 +28,23 @@ const MainLayout = ({ children }) => (
   </>
 );
 
+const routeTitles = {
+  "/": "Welcome to Brescia Grameen",
+  "/about": "About Us",
+  "/services/work-visa": "Work Visa",
+  "/services/student-visa": "Student Visa",
+  "/services/study-abroad": "Study in Abroad",
+  "/services/western-union": "Western Union",
+  "/services/gold-pawning": "Gold Pawning",
+  "/contact": "Contact Us Now",
+};
+
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <NextUIProvider>
       <ToastContainer />
       <BrowserRouter>
+        <Document titles={routeTitles} />
         <Routes>
           <Route
             path="/"

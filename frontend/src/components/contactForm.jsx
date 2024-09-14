@@ -55,6 +55,7 @@ const ContactForm = () => {
               onChange={handleInputChange}
               type="text"
               label="Name"
+              required
             />
           </div>
           <div className="flex w-full col-span-2 lg:col-span-1 flex-wrap md:flex-nowrap gap-4">
@@ -64,6 +65,7 @@ const ContactForm = () => {
               onChange={handleInputChange}
               type="text"
               label="Contact"
+              required
             />
           </div>
           <div className="flex w-full col-span-2 lg:col-span-1 gap-4">
@@ -73,6 +75,7 @@ const ContactForm = () => {
               onChange={handleInputChange}
               type="email"
               label="Email"
+              required
             />
           </div>
           <div className="flex w-full col-span-2 lg:col-span-1  gap-4">
@@ -82,6 +85,7 @@ const ContactForm = () => {
               onChange={handleInputChange}
               type="text"
               label="Amount (LKR)"
+              required
             />
           </div>
           <select
@@ -90,9 +94,11 @@ const ContactForm = () => {
             value={formData.purpose}
             label="Loan Purpose"
             className="col-span-2 w-full"
+            required
           >
             <option
               value=""
+              required
               className="text-slate-500 cursor-not-allowed w-full"
             >
               -select loan purpose-
