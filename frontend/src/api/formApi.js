@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "http://localhost:5000/api/contact";
+const API_URL = "https://brescia-production.up.railway.app/api/contact";
 
 export const form = async (formData) => {
   try {
