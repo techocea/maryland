@@ -16,6 +16,7 @@ const About = () => {
             className="w-2/3"
             alt="About Image"
           />
+          
           <Image
             src={design as StaticImageData}
             width={186}
