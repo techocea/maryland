@@ -1,6 +1,6 @@
-import { WhyUsData } from "@/utils/constants";
 import React from "react";
 import WhyUsCard from "./WhyUsCard";
+import { WhyUsData } from "@/utils/constants";
 
 const WhyUs = () => {
   return (
