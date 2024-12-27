@@ -1,8 +1,8 @@
 import React from "react";
-import Image, { StaticImageData } from "next/image";
-import design from "@/public/design.png";
-import { Button } from "./ui/button";
 import Link from "next/link";
+import Image, { StaticImageData } from "next/image";
+import { Button } from "./ui/button";
+import design from "@/public/design.png";
 
 const About = () => {
   return (
