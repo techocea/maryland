@@ -1,27 +1,14 @@
-import clientPromise from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
+import connectDB from "@/lib/mongodb";
 import bcrypt from "bcryptjs";
+import Users from "@/app/lib/registerSchema";
 
 export async function POST(req: NextRequest) {
+  const { email, password } = await req.json();
   try {
-    const client = await clientPromise;
-    const db = client.db("test");
+    await connectDB();
 
-    const { email, password } = await req.json();
-
-    if (!email || !password) {
-      return NextResponse.json(
-        {
-          message: "Email and password are required",
-        },
-        {
-          status: 400,
-        }
-      );
-    }
-
-    const collection = db.collection("users");
-    const isUserExisits = await collection.findOne({ email });
+    const isUserExisits = await Users.findOne({ email });
 
     if (isUserExisits) {
       return NextResponse.json(
@@ -32,16 +19,11 @@ export async function POST(req: NextRequest) {
 
     const hashedPassword = await bcrypt.hash(password, 10);
 
-    const result = await collection.insertOne({
-      email,
-      password: hashedPassword,
-      createdAt: new Date(),
-    });
+    await Users.create({ email, password: hashedPassword });
 
     return NextResponse.json(
       {
         message: "User registered Successfully",
-        userId: result.insertedId,
         success: true,
       },
       { status: 201 }

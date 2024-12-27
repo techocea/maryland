@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
-const applicationSchema = new mongoose.Schema({
-  personal: {
+const applicationSchema = new mongoose.Schema(
+  {
     firstName: {
       type: String,
       required: true,
@@ -21,10 +21,12 @@ const applicationSchema = new mongoose.Schema({
     },
     gender: {
       type: String,
+      enum: ["Male", "Female"],
       required: true,
     },
     maritalStatus: {
       type: String,
+      enum: ["Single", "Married", "Divorced", "Widowed"],
       required: true,
     },
     contact: {
@@ -35,17 +37,11 @@ const applicationSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-  },
-  address: {
     address1: {
       type: String,
       required: true,
     },
     address2: {
-      type: String,
-      required: true,
-    },
-    city: {
       type: String,
       required: true,
     },
@@ -57,64 +53,67 @@ const applicationSchema = new mongoose.Schema({
       type: String,
       required: true,
     },
-  },
-  education: {
     olEnglish: {
       type: String,
+      enum: ["A", "B", "C", "D", "F"],
       required: true,
     },
     alEnglish: {
       type: String,
+      enum: ["A", "B", "C", "D", "F"],
       required: true,
     },
     englishTest: {
       type: String,
+      enum: ["IELTS", "PTE", "TOEFL", "None"],
       required: true,
     },
-  },
-  documents: {
     passport: {
       type: String,
-      required: true,
+      required: false,
     },
     degreeCertificate: {
       type: String,
-      required: true,
+      required: false,
     },
     curriculumVitae: {
       type: String,
-      required: true,
+      required: false,
     },
     alCertificate: {
       type: String,
-      required: true,
+      required: false,
     },
     olCertificate: {
       type: String,
-      required: true,
+      required: false,
     },
     statementOfPurpose: {
       type: String,
-      required: true,
+      required: false,
     },
     degreeTranscript: {
       type: String,
-      required: true,
+      required: false,
     },
     englishProficiencyTest: {
       type: String,
-      required: true,
+      required: false,
     },
     academicRecommendationLetter: {
       type: String,
-      required: true,
+      required: false,
     },
     workRecommendationLetter: {
       type: String,
-      required: true,
+      required: false,
     },
   },
-});
+  { timestamps: true }
+);
 
-export default mongoose.models.ApplicationForm ||
-  mongoose.model("ApplicationForm", applicationSchema);
+const Application =
+  mongoose.models.Application ||
+  mongoose.model("Application", applicationSchema);
+
+export default Application;
