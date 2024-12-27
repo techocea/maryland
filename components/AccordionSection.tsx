@@ -20,7 +20,7 @@ const AccordionSection = () => {
           collapsible
           className="w-full max-w-[300px] sm:max-w-md lg:max-w-lg"
         >
-          <AccordionItem value="item-1" className="bg-secondary">
+          <AccordionItem value="item-1">
             <AccordionTrigger className="text-sm md:text-lg text-left">
               How can I submit my application?
             </AccordionTrigger>
