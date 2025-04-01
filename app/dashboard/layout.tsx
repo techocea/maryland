@@ -2,9 +2,6 @@ import React from "react";
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
 import "../globals.css";
-import PortalNavbar from "@/components/PortalNavbar";
-import AuthFooter from "@/components/AuthFooter";
-import { SessionProvider } from "next-auth/react";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -17,20 +14,14 @@ export const metadata: Metadata = {
     "The best study abroad agency in sri lanka over 6+ years of experience",
 };
 
-export default function WelcomePortalLayout({
+export default function DashboardLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
   return (
-    <SessionProvider>
-      <html lang="en">
-        <body className={`${raleway.className} antialiased`}>
-          <PortalNavbar />
-          {children}
-          <AuthFooter />
-        </body>
-      </html>
-    </SessionProvider>
+    <html lang="en">
+      <body className={`${raleway.className} antialiased`}>{children}</body>
+    </html>
   );
 }

@@ -1,35 +1,41 @@
+import User from "@/app/lib/registerSchema";
+import connectDB from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcryptjs";
-import Users from "@/app/lib/registerSchema";
-import connectDB from "@/lib/mongodb";
 
 export async function POST(req: NextRequest) {
   const { email, password } = await req.json();
   try {
     await connectDB();
 
-    const isUserExists = await Users.findOne({ email });
+    const isUserExisits = await User.findOne({ email });
 
-    if (!isUserExists) {
+    if (!isUserExisits) {
       return NextResponse.json(
-        { msg: "Invalid email or password", success: false },
+        { message: "User is not registered", succes: "false" },
         { status: 401 }
       );
     }
 
-    const isPasswordValid = await bcrypt.compare(password, isUserExists.password);
+    const isPasswordValid = await bcrypt.compare(
+      password,
+      isUserExisits.password
+    );
 
     if (!isPasswordValid) {
       return NextResponse.json(
-        { message: "Invalid email or password", success: false },
+        {
+          message: "Invalid Password",
+          success: "false",
+        },
         { status: 401 }
       );
     }
 
     return NextResponse.json(
       {
-        message: "Login successful",
-        success: true,
+        message: "Login Successfull",
+        success: "true",
       },
       { status: 200 }
     );
@@ -38,7 +44,7 @@ export async function POST(req: NextRequest) {
 
     return NextResponse.json(
       {
-        msg: "An error occurred while logging in",
+        message: "An error occured while registering user",
         success: false,
       },
       { status: 500 }

@@ -1,12 +1,11 @@
 import Link from "next/link";
-import hat from "@/public/hat.png";
 import About from "@/components/About";
 import WhyUs from "@/components/WhyUs";
 import CTASection from "@/components/CTASection";
 import AccordionSection from "@/components/AccordionSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import { Button } from "@/components/ui/button";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 export default function Home() {
   return (
@@ -15,8 +14,10 @@ export default function Home() {
         <div className="max-w-md lg:max-w-lg w-full">
           <div className="relative">
             <Image
-              src={hat as StaticImageData}
+              src={"/hat.png"}
               alt="design hat"
+              fill
+              quality={100}
               className="max-w-20 max-h-20  sm:w-2/3 absolute top-0 left-0 sm:left-[-20px]"
             />
           </div>
@@ -35,7 +36,7 @@ export default function Home() {
           </div>
           <div className="flex sm:flex-row lg:flex-row items-center justify-center lg:justify-start gap-4 mt-4">
             <Button asChild>
-              <Link href="/contact">Join Now</Link>
+              <Link href="/sign-up">Join Now</Link>
             </Button>
             <Button variant="outline" asChild>
               <Link href="/about">Learn More</Link>

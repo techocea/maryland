@@ -18,21 +18,25 @@ export const metadata: Metadata = {
     "The best study abroad agency in sri lanka over 6+ years of experience",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+ 
+
   return (
     <html lang="en">
       <head>
         <link rel="icon" href="/favicon.svg" sizes="any" />
       </head>
       <body className={`${raleway.className} antialiased`}>
-        <ToastContainer/>
-        <AuthNavbar />
-        {children}
-        <AuthFooter />
+      
+          <ToastContainer />
+          <AuthNavbar />
+          {children}
+          <AuthFooter />
+        
       </body>
     </html>
   );

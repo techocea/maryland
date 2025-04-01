@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import React from "react";
+import React, { useState } from "react";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -20,9 +20,11 @@ import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { UserData, userSchema } from "@/app/lib/zodSchema";
 import Link from "next/link";
+import { Loader2 } from "lucide-react";
 
 const SignUpForm = () => {
   const router = useRouter();
+  const [isLoading, setIsLoading] = useState(false);
   const {
     control,
     handleSubmit,
@@ -42,6 +44,7 @@ const SignUpForm = () => {
 
   const onSubmit = async (data: UserData) => {
     try {
+      setIsLoading(true);
       const response = await axios.post("/api/register", data);
 
       if (response.data.success) {
@@ -53,6 +56,8 @@ const SignUpForm = () => {
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
       console.error("[Error registering the user]:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -90,8 +95,14 @@ const SignUpForm = () => {
           />
         </div>
         <div className="flex w-full">
-          <Button type="submit" className="w-full">
-            Register
+          <Button disabled={isLoading} type="submit" className="w-full">
+            {isLoading ? (
+              <div className="flex items-center justify-center gap-x-3">
+                Please Wait <Loader2 className="transition-all animate-spin" />
+              </div>
+            ) : (
+              "Register"
+            )}
           </Button>
         </div>
       </form>

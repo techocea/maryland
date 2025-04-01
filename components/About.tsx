@@ -1,8 +1,7 @@
 import React from "react";
 import Link from "next/link";
-import design from "@/public/design.png";
 import { Button } from "./ui/button";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 const About = () => {
   return (
@@ -16,9 +15,9 @@ const About = () => {
             className="w-2/3"
             alt="About Image"
           />
-          
+
           <Image
-            src={design as StaticImageData}
+            src={"/design.png"}
             width={186}
             height={188}
             className="hidden md:flex absolute right-20 lg:right-10 -bottom-10 z-[-10] w-40 h-40"
@@ -37,9 +36,9 @@ const About = () => {
           <p className="text-muted text-sm leading-5">
             Our mission is to provide top-tier support for students aiming to
             study abroad, ensuring their personal and professional growth.
-            Whether you&apos;re a student eager to expand your academic journey or a
-            counselor dedicated to helping students achieve their career goals,
-            we are here to assist you every step of the way.
+            Whether you&apos;re a student eager to expand your academic journey
+            or a counselor dedicated to helping students achieve their career
+            goals, we are here to assist you every step of the way.
           </p>
           <div>
             <Button variant="outline" className="w-full md:w-fit" asChild>

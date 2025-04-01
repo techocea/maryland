@@ -1,6 +1,7 @@
 import Application from "@/app/lib/applicationSchema";
 import connectDB from "@/lib/mongodb";
 import { NextRequest, NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 
 export async function POST(req: NextRequest) {
   const {
@@ -58,7 +59,91 @@ export async function POST(req: NextRequest) {
       degreeTranscript,
       englishProficiencyTest,
       academicRecommendationLetter,
-      workRecommendationLetter
+      workRecommendationLetter,
+    });
+
+    const fullName = `${firstName} ${lastName}`;
+
+    const documentLinks = [
+      { name: "Passport", link: passport },
+      { name: "Degree Certificate", link: degreeCertificate },
+      { name: "Curriculum Vitae", link: curriculumVitae },
+      { name: "A/L Certificate", link: alCertificate },
+      { name: "O/L Certificate", link: olCertificate },
+      { name: "Statement of Purpose", link: statementOfPurpose },
+      { name: "Degree Transcript", link: degreeTranscript },
+      { name: "English Proficiency Test", link: englishProficiencyTest },
+      {
+        name: "Academic Recommendation Letter",
+        link: academicRecommendationLetter,
+      },
+      { name: "Work Recommendation Letter", link: workRecommendationLetter },
+    ].filter((doc) => doc.link);
+
+    const htmlContent = `
+      <div style="font-family: Arial, sans-serif; line-height: 1.6;">
+        <h2 style="color: #2c3e50;">New Student Application Submission</h2>
+        <p>A new student application has been submitted. Below are the details:</p>
+
+        <h3 style="color: #3498db;">Personal Details</h3>
+        <table border="1" cellpadding="8" cellspacing="0" width="100%" style="border-collapse: collapse;">
+          <tr><th align="left">Full Name</th><td>${fullName}</td></tr>
+          <tr><th align="left">Email</th><td>${email}</td></tr>
+          <tr><th align="left">Contact</th><td>${contact}</td></tr>
+          <tr><th align="left">Nationality</th><td>${nationality}</td></tr>
+          <tr><th align="left">NIC</th><td>${nic}</td></tr>
+          <tr><th align="left">Gender</th><td>${gender}</td></tr>
+          <tr><th align="left">Marital Status</th><td>${maritalStatus}</td></tr>
+        </table>
+
+        <h3 style="color: #3498db;">Address Information</h3>
+        <table border="1" cellpadding="8" cellspacing="0" width="100%" style="border-collapse: collapse;">
+          <tr><th align="left">Address Line 1</th><td>${address1}</td></tr>
+          <tr><th align="left">Address Line 2</th><td>${address2}</td></tr>
+          <tr><th align="left">Province</th><td>${province}</td></tr>
+          <tr><th align="left">District</th><td>${district}</td></tr>
+        </table>
+
+        <h3 style="color: #3498db;">Education & English Proficiency</h3>
+        <table border="1" cellpadding="8" cellspacing="0" width="100%" style="border-collapse: collapse;">
+          <tr><th align="left">O/L English Grade</th><td>${olEnglish}</td></tr>
+          <tr><th align="left">A/L English Grade</th><td>${alEnglish}</td></tr>
+          <tr><th align="left">English Test</th><td>${englishTest}</td></tr>
+        </table>
+
+        <h3 style="color: #3498db;">Submitted Documents</h3>
+        <table border="1" cellpadding="8" cellspacing="0" width="100%" style="border-collapse: collapse;">
+          <tr><th align="left">Document</th><th align="left">Download Link</th></tr>
+          ${documentLinks
+            .map(
+              (doc) =>
+                `<tr><td>${doc.name}</td><td><a href="${doc.link}" target="_blank">Download</a></td></tr>`
+            )
+            .join("")}
+        </table>
+
+        <p>If you are unable to download the documents, they are also attached to this email.</p>
+        <p>Best Regards, <br> Maryland Consultancy</p>
+      </div>
+    `;
+
+    const transporter = nodemailer.createTransport({
+      service: "gmail",
+      auth: {
+        user: process.env.EMAIL_USER,
+        pass: process.env.EMAIL_PASS,
+      },
+    });
+
+    await transporter.sendMail({
+      from: email,
+      to: process.env.EMAIL_USER,
+      subject: `New Student Application Submission - ${fullName}`,
+      html: htmlContent,
+      attachments: documentLinks.map((doc) => ({
+        filename: `${doc.name}.pdf`,
+        path: doc.link,
+      })),
     });
 
     return NextResponse.json(

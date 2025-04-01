@@ -17,7 +17,7 @@ export type Testimonial = {
   id: number;
   saying: string;
   name: string;
-  avatar: undefined;
+  avatar: string;
   university: string;
 };
 
@@ -54,3 +54,13 @@ export type SidebarTypes = {
   id: number;
   label: string;
 };
+
+export type GalleryImage = {
+  src: string;
+  alt: string;
+  aspectRatio?: "square" | "portrait" | "landscape";
+}
+
+export type StylishGalleryProps = {
+  images: GalleryImage[];
+}

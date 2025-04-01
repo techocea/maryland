@@ -1,6 +1,9 @@
 import React from "react";
 import WhyUsCard from "./WhyUsCard";
 import { WhyUsData } from "@/utils/constants";
+import { Youtube } from "lucide-react";
+import { Button } from "./ui/button";
+import Link from "next/link";
 
 const WhyUs = () => {
   return (
@@ -19,11 +22,27 @@ const WhyUs = () => {
           ))}
         </div>
         <div className="w-full max-w-screen-lg mx-auto mt-16">
-          <video className="w-full h-auto" autoPlay muted controls preload="none">
+          <video
+            className="w-full h-auto"
+            autoPlay
+            muted
+            controls
+            preload="none"
+          >
             <source src="./video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </div>
+        </div> 
+        <Button variant="link">
+          <Link href="https://www.youtube.com/@marylandstudentvisa">
+            <img
+              src="/subscribe.png"
+              width={200}
+              height={50}
+              alt="best study abroad agency"
+            />
+          </Link>
+        </Button>
       </div>
     </main>
   );

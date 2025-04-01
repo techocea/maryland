@@ -10,7 +10,7 @@ const AccordionSection = () => {
     <main className="h-full py-20">
       <div className="flex flex-col gap-y-4 text-center items-center justify-center">
         <h1 className="sub-heading">faq</h1>
-        <h3 className="text-xl md:text-2xl lg:text-4xl font-bold">
+        <h3 className="text-xl md:text-2xl lg:text-4xl font-bold capitalize">
           <span className="text-primary">clear</span> your doubts
         </h3>
       </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { FooterData } from "@/utils/constants";
 import { FooterSection } from "@/types";
-import { Facebook, Instagram, Linkedin } from "lucide-react";
+import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "./ui/separator";
@@ -19,9 +19,18 @@ const Footer = () => {
             alt="maryland consultancy"
           />
           <span className="flex items-center gap-x-4 mt-2">
-            <Linkedin />
-            <Facebook />
-            <Instagram />
+            <Link
+              href="https://www.youtube.com/@marylandstudentvisa"
+              className="hover:text-red-500 transition-all duration-150"
+            >
+              <Youtube />
+            </Link>
+            <Link
+              href="https://web.facebook.com/Marylandcmb"
+              className="hover:text-blue-500 transition-all duration-150"
+            >
+              <Facebook />
+            </Link>
           </span>
         </div>
         <div className="flex flex-col max-lg:space-y-6 lg:flex-row justify-between w-full">
@@ -61,7 +70,7 @@ const Footer = () => {
           ))}
         </div>
       </div>
-      <Separator className="my-4"/>
+      <Separator className="my-4" />
       <div className="text-center text-xs">
         © {new Date().getFullYear()} Maryland Consultancy. All rights reserved.
         <br />

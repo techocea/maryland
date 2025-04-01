@@ -1,7 +1,7 @@
 "use client";
 
 import { z } from "zod";
-import React from "react";
+import React, { useState } from "react";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -18,29 +18,25 @@ import { Input } from "./ui/input";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { UserData, userSchema } from "@/app/lib/zodSchema";
+import { signIn } from "next-auth/react";
+import { Loader2 } from "lucide-react";
 import axios from "axios";
 
 const SignInForm = () => {
   const router = useRouter();
-  const {
-    control,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<UserData>({
-    resolver: zodResolver(userSchema),
-  });
+  const [isLoading, setIsLoading] = useState(false);
 
-  //Define the form
   const form = useForm<z.infer<typeof userSchema>>({
     resolver: zodResolver(userSchema),
     defaultValues: {
       email: "",
-      password: " ",
+      password: "",
     },
   });
 
   const onSubmit = async (data: UserData) => {
     try {
+      setIsLoading(true);
       const response = await axios.post("/api/login", data);
 
       if (response.data.success) {
@@ -57,24 +53,31 @@ const SignInForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8 w-full mb-4">
+      <form
+        onSubmit={form.handleSubmit(onSubmit)}
+        className="space-y-8 w-full mb-4"
+      >
         <div className="flex flex-col gap-4">
           <FormField
-            control={control}
+            control={form.control}
             name="email"
             defaultValue=""
             render={({ field }) => (
               <FormItem>
                 <FormLabel>Email Address</FormLabel>
                 <FormControl>
-                  <Input placeholder="example@email.com" {...field} />
+                  <Input
+                    type="email"
+                    placeholder="example@email.com"
+                    {...field}
+                  />
                 </FormControl>
-                <FormMessage>{errors.email?.message}</FormMessage>
+                <FormMessage />
               </FormItem>
             )}
           />
           <FormField
-            control={control}
+            control={form.control}
             name="password"
             defaultValue=""
             render={({ field }) => (
@@ -83,14 +86,20 @@ const SignInForm = () => {
                 <FormControl>
                   <Input type="password" placeholder="password" {...field} />
                 </FormControl>
-                <FormMessage>{errors.password?.message}</FormMessage>
+                <FormMessage />
               </FormItem>
             )}
           />
         </div>
         <div className="flex w-full">
-          <Button type="submit" className="w-full">
-            Log In
+          <Button disabled={isLoading} type="submit" className="w-full">
+            {isLoading ? (
+              <div className="flex items-center justify-center gap-x-3">
+                Please Wait <Loader2 className="transition-all animate-spin" />
+              </div>
+            ) : (
+              "Log In"
+            )}
           </Button>
         </div>
       </form>

@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     "The best study abroad agency in sri lanka over 6+ years of experience",
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;

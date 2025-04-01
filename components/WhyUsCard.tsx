@@ -27,7 +27,7 @@ const WhyUsCard = ({ item }: { item: WhyUsCardProps }) => {
         />
         <CardTitle>{title}</CardTitle>
       </CardHeader>
-      <CardContent>
+      <CardContent className="pt-0">
         <CardDescription className="md:text-left">{description}</CardDescription>
       </CardContent>
     </Card>

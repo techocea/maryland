@@ -1,10 +1,4 @@
-import {
-  FooterSection,
-  NavItem,
-  Service,
-  Testimonial,
-  WhyUs,
-} from "@/types";
+import { FooterSection, GalleryImage, NavItem, Service, Testimonial, WhyUs } from "@/types";
 import talk from "@/public/talk.png";
 import application from "@/public/application.png";
 import trust from "@/public/trust.png";
@@ -14,8 +8,51 @@ export const NavItems: NavItem[] = [
   { id: 1, label: "Home", href: "/" },
   { id: 2, label: "About", href: "/about" },
   { id: 3, label: "Study Destinations", href: "/study-destinations" },
-
+  { id: 4, label: "Gallery", href: "/gallery" },
   { id: 5, label: "Contact", href: "/contact" },
+];
+
+export const Gallery: GalleryImage[] = [
+  {
+    src: "/testimonial6.jpeg",
+    alt: "testimonial 6",
+    aspectRatio: "square",
+  },
+  {
+    src: "/testimonial7.jpeg",
+    alt: "testimonial 7",
+    aspectRatio: "portrait",
+  },
+  {
+    src: "/testimonial8.jpeg",
+    alt: "testimonial 8",
+    aspectRatio: "landscape",
+  },
+  {
+    src: "/testimonial9.jpeg",
+    alt: "testimonial 9",
+    aspectRatio: "square",
+  },
+  {
+    src: "/testimonial10.jpeg",
+    alt: "testimonial 10",
+    aspectRatio: "portrait",
+  },
+  {
+    src: "/testimonial11.jpeg",
+    alt: "testimonial 11",
+    aspectRatio: "landscape",
+  },
+  {
+    src: "/testimonial12.jpeg",
+    alt: "testimonial 12",
+    aspectRatio: "square",
+  },
+  {
+    src: "/testimonial5.jpeg",
+    alt: "testimonial 5",
+    aspectRatio: "landscape",
+  },
 ];
 
 export const steps = [
@@ -131,24 +168,40 @@ export const TestimonialData: Testimonial[] = [
     id: 1,
     saying:
       "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
-    avatar: undefined,
-    name: "john ",
+    avatar: "/testimonial1.jpeg",
+    name: "venuja pethmin",
     university: "University of Melbourne",
   },
   {
     id: 2,
     saying:
       "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
-    avatar: undefined,
-    name: "john doe",
+    avatar: "/testimonial2.jpeg",
+    name: "isuru masinghe",
     university: "University of Melbourne",
   },
   {
     id: 3,
     saying:
       "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
-    avatar: undefined,
-    name: "john doe doe",
+    avatar: "/testimonial3.jpeg",
+    name: "kanushka nanayakkara",
+    university: "University of Melbourne",
+  },
+  {
+    id: 4,
+    saying:
+      "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
+    avatar: "/testimonial4.jpeg",
+    name: "hashmi sathnara",
+    university: "University of Melbourne",
+  },
+  {
+    id: 5,
+    saying:
+      "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
+    avatar: "/testimonial5.jpeg",
+    name: "nayani nadishika",
     university: "University of Melbourne",
   },
 ];
