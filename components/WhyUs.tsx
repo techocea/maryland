@@ -1,7 +1,6 @@
 import React from "react";
 import WhyUsCard from "./WhyUsCard";
 import { WhyUsData } from "@/utils/constants";
-import { Youtube } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
