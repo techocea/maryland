@@ -1,5 +1,4 @@
 import StylishGallery from "@/components/Gallery";
-import { GalleryImage } from "@/types";
 import { Gallery } from "@/utils/constants";
 
 const GalleryPage = () => {

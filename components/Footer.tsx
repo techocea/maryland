@@ -1,7 +1,7 @@
 import React from "react";
 import { FooterData } from "@/utils/constants";
 import { FooterSection } from "@/types";
-import { Facebook, Instagram, Linkedin, Youtube } from "lucide-react";
+import { Facebook, Youtube } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "./ui/separator";

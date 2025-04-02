@@ -18,7 +18,6 @@ import { Input } from "./ui/input";
 import { useRouter } from "next/navigation";
 import { toast } from "react-toastify";
 import { UserData, userSchema } from "@/app/lib/zodSchema";
-import { signIn } from "next-auth/react";
 import { Loader2 } from "lucide-react";
 import axios from "axios";
 

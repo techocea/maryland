@@ -4,6 +4,7 @@ import { WhyUsData } from "@/utils/constants";
 import { Youtube } from "lucide-react";
 import { Button } from "./ui/button";
 import Link from "next/link";
+import Image from "next/image";
 
 const WhyUs = () => {
   return (
@@ -32,10 +33,10 @@ const WhyUs = () => {
             <source src="./video.mp4" type="video/mp4" />
             Your browser does not support the video tag.
           </video>
-        </div> 
+        </div>
         <Button variant="link">
           <Link href="https://www.youtube.com/@marylandstudentvisa">
-            <img
+            <Image
               src="/subscribe.png"
               width={200}
               height={50}
