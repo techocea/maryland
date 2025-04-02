@@ -1,4 +1,5 @@
 "use client";
+
 import { z } from "zod";
 import axios from "axios";
 import { motion } from "motion/react";
@@ -31,8 +32,8 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
-  const delta = currentStep - previousStep;
   const [pdfUrl, setPdfUrl] = useState("");
+  const delta = currentStep - previousStep;
   const {
     register,
     control,
@@ -645,30 +646,45 @@ const ProfilePage = () => {
                   <Controller
                     name="passport"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("passport", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("passport", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.passport && (
                     <span className="text-red-500 text-sm">
                       {errors.passport.message}
@@ -685,30 +701,45 @@ const ProfilePage = () => {
                   <Controller
                     name="degreeCertificate"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("degreeCertificate", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("degreeCertificate", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+                        {field.value && (
+                          <a
+                            className="flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span className="pt-4">View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.degreeCertificate && (
                     <span className="text-red-500 text-sm">
                       {errors.degreeCertificate.message}
@@ -725,30 +756,45 @@ const ProfilePage = () => {
                   <Controller
                     name="curriculumVitae"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("curriculumVitae", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("curriculumVitae", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.curriculumVitae && (
                     <span className="text-red-500 text-sm">
                       {errors.curriculumVitae.message}
@@ -765,35 +811,46 @@ const ProfilePage = () => {
                   <Controller
                     name="alCertificate"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("alCertificate", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("alCertificate", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
-                  {errors.alCertificate && (
-                    <span className="text-red-500 text-sm">
-                      {errors.alCertificate.message}
-                    </span>
-                  )}
                 </div>
                 <div>
                   <Label
@@ -805,30 +862,46 @@ const ProfilePage = () => {
                   <Controller
                     name="olCertificate"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("olCertificate", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("olCertificate", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.olCertificate && (
                     <span className="text-red-500 text-sm">
                       {errors.olCertificate.message}
@@ -845,30 +918,46 @@ const ProfilePage = () => {
                   <Controller
                     name="statementOfPurpose"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("statementOfPurpose", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("statementOfPurpose", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.statementOfPurpose && (
                     <span className="text-red-500 text-sm">
                       {errors.statementOfPurpose.message}
@@ -885,30 +974,46 @@ const ProfilePage = () => {
                   <Controller
                     name="degreeTranscript"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("degreeTranscript", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("degreeTranscript", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.degreeTranscript && (
                     <span className="text-red-500 text-sm">
                       {errors.degreeTranscript.message}
@@ -920,35 +1025,51 @@ const ProfilePage = () => {
                     htmlFor="englishProficiencyTest"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    english Proficiency Test
+                    English Proficiency Test
                   </Label>
                   <Controller
                     name="englishProficiencyTest"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("englishProficiencyTest", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("englishProficiencyTest", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.englishProficiencyTest && (
                     <span className="text-red-500 text-sm">
                       {errors.englishProficiencyTest.message}
@@ -965,30 +1086,49 @@ const ProfilePage = () => {
                   <Controller
                     name="academicRecommendationLetter"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("academicRecommendationLetter", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue(
+                              "academicRecommendationLetter",
+                              uploadedUrl
+                            );
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.academicRecommendationLetter && (
                     <span className="text-red-500 text-sm">
                       {errors.academicRecommendationLetter.message}
@@ -1005,30 +1145,46 @@ const ProfilePage = () => {
                   <Controller
                     name="workRecommendationLetter"
                     control={control}
-                    render={() => (
-                      <UploadDropzone
-                        endpoint="pdfUploader"
-                        onClientUploadComplete={(res) => {
-                          const uploadedUrl = res[0].url;
-                          setPdfUrl(uploadedUrl);
-                          setValue("workRecommendationLetter", uploadedUrl);
-                          toast.success("PDF uploaded successfully!");
-                        }}
-                        onUploadError={(error) => {
-                          toast.error(`ERROR! ${error.message}`);
-                        }}
-                      />
+                    render={({ field }) => (
+                      <>
+                        <UploadDropzone
+                          endpoint="pdfUploader"
+                          onClientUploadComplete={(res) => {
+                            const uploadedUrl = res[0].ufsUrl;
+                            setPdfUrl(uploadedUrl);
+                            setValue("workRecommendationLetter", uploadedUrl);
+                            field.onChange(uploadedUrl);
+                            toast.success("PDF uploaded successfully!");
+                          }}
+                          onUploadError={(error) => {
+                            toast.error(`ERROR! ${error.message}`);
+                          }}
+                        />
+
+                        {field.value && (
+                          <a
+                            className="pt-4 flex space-x-3 items-center text-purple-600"
+                            target="_blank"
+                            href={field.value}
+                          >
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              viewBox="0 0 24 24"
+                              fill="currentColor"
+                              className="w-6 h-6"
+                            >
+                              <path
+                                fillRule="evenodd"
+                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
+                                clipRule="evenodd"
+                              />
+                            </svg>
+                            <span>View Document</span>
+                          </a>
+                        )}
+                      </>
                     )}
                   />
-                  {/* {pdfUrl && (
-                    <a
-                      className="flex space-x-3 items-center text-purple-600"
-                      target="_blank"
-                      href={pdfUrl}
-                    >
-                      <span>View PDF</span>
-                    </a>
-                  )} */}
                   {errors.workRecommendationLetter && (
                     <span className="text-red-500 text-sm">
                       {errors.workRecommendationLetter.message}

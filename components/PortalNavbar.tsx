@@ -1,4 +1,5 @@
-import React from "react";
+"use client";
+
 import Image from "next/image";
 import {
   DropdownMenu,
@@ -8,12 +9,12 @@ import {
 } from "./ui/dropdown-menu";
 import { User } from "lucide-react";
 import { Separator } from "./ui/separator";
-import { auth } from "@/auth";
+import { useSession } from "next-auth/react";
 import SignOutButton from "./SignOutButton";
 
-const PortalNavbar = async () => {
-  const session = await auth();
-  // console.log(session)
+const PortalNavbar = () => {
+  const { data: session } = useSession();
+  console.log(session);
 
   return (
     <header className="p-2 sm:px-4 sm:py-2 md:px-2 lg:py-4 lg:px-10 shadow-lg">
@@ -37,7 +38,7 @@ const PortalNavbar = async () => {
               <DropdownMenuItem className="flex flex-col gap-2 items-start">
                 <h4 className="font-semibold">Email</h4>
                 <p className="text-muted-foreground font-semibold">
-                  {session?.user?.email}
+                  {session.user?.email}
                 </p>
               </DropdownMenuItem>
               <Separator />

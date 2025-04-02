@@ -1,14 +1,14 @@
 import { z } from "zod";
 
 export const contactFormSchema = z.object({
-  name: z.string().min(2, { message: "Name field should not be empty" }),
+  name: z.string().min(2, { message: "Required" }),
   contact: z
     .string()
-    .max(10, { message: "Contact field should contain 10 characters" }),
-  email: z.string().email("Email field should not be empty"),
-  destination: z.string(),
-  area: z.string(),
-  mode: z.string(),
+    .min(10, { message: "Required" }),
+  email: z.string().email("Required"),
+  destination: z.string().min(2, { message: "Required" }),
+  area: z.string().min(2, { message: "Required" }),
+  mode: z.string().min(2, { message: "Required" }),
 });
 
 export const userSchema = z.object({

@@ -44,8 +44,8 @@ const ContactForm = () => {
       name: "",
       contact: "",
       email: "",
-      destination: " ",
-      area: " ",
+      destination: "",
+      area: "",
       mode: "",
     },
   });
@@ -81,7 +81,10 @@ const ContactForm = () => {
 
   return (
     <Form {...form}>
-      <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="space-y-8 w-full lg:max-w-md"
+      >
         <div className="flex flex-col gap-4">
           <FormField
             control={control}
@@ -125,83 +128,82 @@ const ContactForm = () => {
               </FormItem>
             )}
           />
-          <FormField
-            control={control}
-            name="destination"
-            render={({ field, fieldState }) => (
-              <Select onValueChange={field.onChange} value={field.value || " "}>
-                <FormLabel>Select Destination</FormLabel>
-                <SelectTrigger>
-                  <SelectValue placeholder="Select Destination" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="USA">USA</SelectItem>
-                  <SelectItem value="Australia">Australia</SelectItem>
-                  <SelectItem value="Canada">Canada</SelectItem>
-                  <SelectItem value="New Zealand">New Zealand</SelectItem>
-                  <SelectItem value="United Kingdom">United Kingdom</SelectItem>
-                </SelectContent>
-                {fieldState.error && (
-                  <p className="text-red-500 text-sm font-semibold">
-                    {fieldState.error.message}
-                  </p>
+
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+            <div>
+              <FormField
+                control={control}
+                name="destination"
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange}>
+                    <FormLabel>Destination</FormLabel>
+                    <SelectTrigger>
+                      <SelectValue placeholder="USA" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="USA">USA</SelectItem>
+                      <SelectItem value="Australia">Australia</SelectItem>
+                      <SelectItem value="Canada">Canada</SelectItem>
+                      <SelectItem value="New Zealand">New Zealand</SelectItem>
+                      <SelectItem value="United Kingdom">
+                        United Kingdom
+                      </SelectItem>
+                    </SelectContent>
+                    <FormMessage>{errors.destination?.message}</FormMessage>
+                  </Select>
                 )}
-              </Select>
-            )}
-          />
-          <FormField
-            control={control}
-            name="area"
-            render={({ field, fieldState }) => (
-              <Select onValueChange={field.onChange} value={field.value || " "}>
-                <FormLabel>Select Area of Study</FormLabel>
-                <SelectTrigger>
-                  <SelectValue placeholder="Area of Study" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Engineering">Engineering</SelectItem>
-                  <SelectItem value="Medicine">Medicine</SelectItem>
-                  <SelectItem value="Phsycology">Phsycology</SelectItem>
-                  <SelectItem value="Business Management">
-                    Business Management
-                  </SelectItem>
-                </SelectContent>
-                {fieldState.error && (
-                  <p className="text-red-500 text-sm font-semibold">
-                    {fieldState.error.message}
-                  </p>
+              />
+            </div>
+            <div>
+              <FormField
+                control={control}
+                name="area"
+                render={({ field }) => (
+                  <Select onValueChange={field.onChange}>
+                    <FormLabel>Area of Study</FormLabel>
+                    <SelectTrigger>
+                      <SelectValue placeholder="Medicine" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      <SelectItem value="Engineering">Engineering</SelectItem>
+                      <SelectItem value="Medicine">Medicine</SelectItem>
+                      <SelectItem value="Phsycology">Phsycology</SelectItem>
+                      <SelectItem value="Business Management">
+                        Business Management
+                      </SelectItem>
+                    </SelectContent>
+                    <FormMessage>{errors.area?.message}</FormMessage>
+                  </Select>
                 )}
-              </Select>
-            )}
-          />
-          <FormField
-            control={control}
-            name="mode"
-            render={({ field, fieldState }) => (
-              <Select onValueChange={field.onChange} value={field.value || " "}>
-                <FormLabel>Select Counselling Mode</FormLabel>
-                <SelectTrigger>
-                  <SelectValue placeholder="Counselling Mode" />
-                </SelectTrigger>
-                <SelectContent>
-                  <SelectItem value="Online">Online</SelectItem>
-                  <SelectItem value="Physical">Physical</SelectItem>
-                </SelectContent>
-                {fieldState.error && (
-                  <p className="text-red-500 text-sm font-semibold">
-                    {fieldState.error.message}
-                  </p>
-                )}
-              </Select>
-            )}
-          />
+              />
+            </div>
+          </div>
+          <div>
+            <FormField
+              control={control}
+              name="mode"
+              render={({ field }) => (
+                <Select onValueChange={field.onChange}>
+                  <FormLabel>Counselling Mode</FormLabel>
+                  <SelectTrigger>
+                    <SelectValue placeholder="Physical" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Online">Online</SelectItem>
+                    <SelectItem value="Physical">Physical</SelectItem>
+                  </SelectContent>
+                  <FormMessage>{errors.mode?.message}</FormMessage>
+                </Select>
+              )}
+            />
+          </div>
         </div>
         <div className="flex w-full">
-          <Button type="submit" className="w-full">
+          <Button type="submit" variant="outline" className="w-full">
             {loading ? (
               <>
-                <p>Submitting</p>
-                <Loader2 />
+                <p>Please Wait</p>
+                <Loader2 className="animate-spin transition-all" />
               </>
             ) : (
               "Submit"

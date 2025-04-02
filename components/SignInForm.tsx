@@ -47,6 +47,8 @@ const SignInForm = () => {
     } catch (error) {
       toast.error("An error occurred. Please try again later.");
       console.error("[Error logging the user]:", error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
