@@ -1,53 +1,8 @@
 import NextAuth from "next-auth";
-import Credentials from "next-auth/providers/credentials";
-import connectDB from "@/lib/mongodb";
-import User from "@/app/lib/registerSchema";
-import bcrypt from "bcryptjs";
 
 export const { handlers, signIn, signOut, auth } = NextAuth({
-  providers: [
-    Credentials({
-      credentials: {
-        email: {
-          label: "Email",
-          type: "email",
-          placeholder: "example@email.com",
-        },
-        password: {
-          label: "Password",
-          type: "password",
-          placeholder: "password",
-        },
-      },
-
-      async authorize(credentials) {
-        await connectDB();
-
-        const user = await User.findOne({ email: credentials?.email });
-
-        if (!user) {
-          throw new Error("No user found with this email");
-        }
-
-        if (typeof credentials?.password !== "string") {
-          throw new Error("Invalid password format");
-        }
-
-        const isPasswordValid = await bcrypt.compare(
-          credentials.password,
-          user.password
-        );
-
-        if (!isPasswordValid) {
-          throw new Error("Invalid password");
-        }
-
-        return { id: user._id.toString(), email: user.email, role: user.role };
-      },
-    }),
-  ],
+  providers: [],
   callbacks: {
-    
     async jwt({ token, user }) {
       if (user) {
         token.id = user.id;
@@ -74,4 +29,3 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     signOut: "/",
   },
 });
-
