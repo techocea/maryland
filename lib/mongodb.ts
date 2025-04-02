@@ -1,5 +1,5 @@
 import mongoose from "mongoose";
- 
+
 const connectDB = async () => {
   try {
     if (mongoose.connection.readyState === 0) {
@@ -10,5 +10,5 @@ const connectDB = async () => {
     console.log(error);
   }
 };
- 
+
 export default connectDB;
