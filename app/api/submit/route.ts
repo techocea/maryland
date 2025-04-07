@@ -65,19 +65,22 @@ export async function POST(req: NextRequest) {
     const fullName = `${firstName} ${lastName}`;
 
     const documentLinks = [
-      { name: "Passport", link: passport },
-      { name: "Degree Certificate", link: degreeCertificate },
-      { name: "Curriculum Vitae", link: curriculumVitae },
-      { name: "A/L Certificate", link: alCertificate },
-      { name: "O/L Certificate", link: olCertificate },
-      { name: "Statement of Purpose", link: statementOfPurpose },
-      { name: "Degree Transcript", link: degreeTranscript },
-      { name: "English Proficiency Test", link: englishProficiencyTest },
+      { name: "Passport", link: passport.url },
+      { name: "Degree Certificate", link: degreeCertificate.url },
+      { name: "Curriculum Vitae", link: curriculumVitae.url },
+      { name: "A/L Certificate", link: alCertificate.url },
+      { name: "O/L Certificate", link: olCertificate.url },
+      { name: "Statement of Purpose", link: statementOfPurpose.url },
+      { name: "Degree Transcript", link: degreeTranscript.url },
+      { name: "English Proficiency Test", link: englishProficiencyTest.url },
       {
         name: "Academic Recommendation Letter",
-        link: academicRecommendationLetter,
+        link: academicRecommendationLetter.url,
       },
-      { name: "Work Recommendation Letter", link: workRecommendationLetter },
+      {
+        name: "Work Recommendation Letter",
+        link: workRecommendationLetter.url,
+      },
     ].filter((doc) => doc.link);
 
     const htmlContent = `

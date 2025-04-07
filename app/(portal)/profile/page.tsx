@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SelectionValues, steps } from "@/utils/constants";
+import { DocumentFields, SelectionValues, steps } from "@/utils/constants";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import {
   Select,
@@ -21,8 +21,9 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { formDataSchema } from "@/app/lib/zodSchema";
 import { UploadDropzone } from "@/lib/uploadthing";
-import { Loader2 } from "lucide-react";
+import { Link, Loader2, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
+import { FileImage, FileText, File } from "lucide-react";
 
 type Inputs = z.infer<typeof formDataSchema>;
 type FieldName = keyof Inputs;
@@ -32,7 +33,9 @@ const ProfilePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [previousStep, setPreviousStep] = useState(0);
   const [currentStep, setCurrentStep] = useState(0);
-  const [pdfUrl, setPdfUrl] = useState("");
+  const [documents, setDocuments] = useState<
+    Record<string, { url: string; type: string; name: string }>
+  >({});
   const delta = currentStep - previousStep;
   const {
     register,
@@ -43,6 +46,33 @@ const ProfilePage = () => {
     formState: { errors },
   } = useForm<Inputs>({
     resolver: zodResolver(formDataSchema),
+    defaultValues: {
+      firstName: "Juliya",
+      lastName: "Roberts",
+      nic: "200320610690",
+      nationality: "Sri Lankan",
+      gender: "Female",
+      maritalStatus: "Single",
+      email: "julia.roberts@marylaconsultancy.lk",
+      contact: "777711335",
+      address1: "234/Alan`s Street",
+      address2: "California",
+      district: "Gampaha",
+      province: "Western",
+      olEnglish: "A",
+      alEnglish: "A",
+      englishTest: "IELTS",
+      passport: "",
+      degreeCertificate: "",
+      curriculumVitae: "",
+      alCertificate: "",
+      olCertificate: "",
+      statementOfPurpose: "",
+      degreeTranscript: "",
+      englishProficiencyTest: "",
+      academicRecommendationLetter: "",
+      workRecommendationLetter: "",
+    },
   });
 
   const provinces =
@@ -69,9 +99,17 @@ const ProfilePage = () => {
     }
   };
 
+  const getFileIcon = (type: string) => {
+    if (type?.startsWith("image/"))
+      return <FileImage className="text-blue-600 w-8 h-8" />;
+    if (type === "application/pdf")
+      return <FileText className="text-red-600 w-8 h-8" />;
+    return null;
+  };
+
   const onSubmit: SubmitHandler<Inputs> = async (formData) => {
-    if (!pdfUrl) {
-      toast.error("Please upload your passport PDF before submitting.");
+    if (!documents) {
+      toast.error("Please upload documents before submitting.");
       return;
     }
 
@@ -79,16 +117,16 @@ const ProfilePage = () => {
       setIsLoading(true);
       const finalData = {
         ...formData,
-        passport: pdfUrl,
-        degreeCertificate: pdfUrl,
-        curriculumVitae: pdfUrl,
-        alCertificate: pdfUrl,
-        olCertificate: pdfUrl,
-        statementOfPurpose: pdfUrl,
-        degreeTranscript: pdfUrl,
-        englishProficiencyTest: pdfUrl,
-        academicRecommendationLetter: pdfUrl,
-        workRecommendationLetter: pdfUrl,
+        passport: documents.passport,
+        degreeCertificate: documents.degreeCertificate,
+        curriculumVitae: documents.curriculumVitae,
+        alCertificate: documents.alCertificate,
+        olCertificate: documents.olCertificate,
+        statementOfPurpose: documents.statementOfPurpose,
+        degreeTranscript: documents.degreeTranscript,
+        englishProficiencyTest: documents.englishProficiencyTest,
+        academicRecommendationLetter: documents.academicRecommendationLetter,
+        workRecommendationLetter: documents.workRecommendationLetter,
       };
 
       const response = await axios.post("/api/submit", finalData, {
@@ -636,561 +674,84 @@ const ProfilePage = () => {
               transition={{ duration: 0.3, ease: "easeInOut" }}
             >
               <div className="my-10 grid grid-cols-1 gap-x-6 gap-y-8">
-                <div>
-                  <Label
-                    htmlFor="passport"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Passport
-                  </Label>
-                  <Controller
-                    name="passport"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("passport", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.passport && (
-                    <span className="text-red-500 text-sm">
-                      {errors.passport.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="degreeCertificate"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Degree Certificate
-                  </Label>
-                  <Controller
-                    name="degreeCertificate"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("degreeCertificate", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-                        {field.value && (
-                          <a
-                            className="flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span className="pt-4">View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.degreeCertificate && (
-                    <span className="text-red-500 text-sm">
-                      {errors.degreeCertificate.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="curriculumVitae"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Curriculum Vitae
-                  </Label>
-                  <Controller
-                    name="curriculumVitae"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("curriculumVitae", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.curriculumVitae && (
-                    <span className="text-red-500 text-sm">
-                      {errors.curriculumVitae.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="alCertificate"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    A/L Certificate
-                  </Label>
-                  <Controller
-                    name="alCertificate"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("alCertificate", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
+                {DocumentFields.map((doc) => (
+                  <div key={doc.name} className="space-y-2 mt-6">
+                    <Label
+                      htmlFor={doc.label}
+                      className="block text-sm font-medium leading-6 text-gray-900"
+                    >
+                      {doc.label}
+                    </Label>
+                    <Controller
+                      name={doc.label as FieldName}
+                      control={control}
+                      render={() => (
+                        <>
+                          <UploadDropzone
+                            endpoint="mixedUploader"
+                            onClientUploadComplete={(res) => {
+                              const file = res[0];
+                              const uploadedUrl = file.ufsUrl;
+                              const fileType = file.type;
+                              const fileName = `${
+                                doc.name
+                              }_${Date.now()}.${file.name.split(".").pop()}`;
 
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                </div>
-                <div>
-                  <Label
-                    htmlFor="olCertificate"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    O/L Certificate
-                  </Label>
-                  <Controller
-                    name="olCertificate"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("olCertificate", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
+                              setDocuments((prev) => ({
+                                ...prev,
+                                [doc.name]: {
+                                  url: uploadedUrl,
+                                  type: fileType,
+                                  name: fileName,
+                                },
+                              }));
 
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.olCertificate && (
-                    <span className="text-red-500 text-sm">
-                      {errors.olCertificate.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="statementOfPurpose"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Statement Of Purpose
-                  </Label>
-                  <Controller
-                    name="statementOfPurpose"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("statementOfPurpose", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
+                              setValue(doc.name as FieldName, uploadedUrl);
+                              toast.success(
+                                `${doc.label} uploaded successfully!`
+                              );
+                            }}
+                            onUploadError={(error) => {
+                              toast.error(
+                                `Upload failed for ${doc.label}: ${error.message}`
+                              );
+                            }}
+                          />
+                          {documents[doc.name] && (
+                            <div className="pt-4 flex items-center justify-between border mt-2 rounded px-4 py-2 shadow-sm">
+                              <div className="flex items-center gap-2">
+                                {getFileIcon(documents[doc.name].type)}
+                                <span className="text-lg font-semibold text-gray-800">
+                                  {documents[doc.name].name}
+                                </span>
+                              </div>
+                              <button
+                                onClick={() => {
+                                  setDocuments((prev) => {
+                                    const copy = { ...prev };
+                                    delete copy[doc.name];
+                                    return copy;
+                                  });
+                                  setValue(doc.name as FieldName, "");
+                                }}
+                                type="button"
+                                className="text-red-600"
+                              >
+                                <Trash2 className="w-5 h-5" />
+                              </button>
+                            </div>
+                          )}
 
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.statementOfPurpose && (
-                    <span className="text-red-500 text-sm">
-                      {errors.statementOfPurpose.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="degreeTranscript"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Degree Transcript
-                  </Label>
-                  <Controller
-                    name="degreeTranscript"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("degreeTranscript", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.degreeTranscript && (
-                    <span className="text-red-500 text-sm">
-                      {errors.degreeTranscript.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="englishProficiencyTest"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    English Proficiency Test
-                  </Label>
-                  <Controller
-                    name="englishProficiencyTest"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("englishProficiencyTest", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.englishProficiencyTest && (
-                    <span className="text-red-500 text-sm">
-                      {errors.englishProficiencyTest.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="academicRecommendationLetter"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Academic Recommendation Letter
-                  </Label>
-                  <Controller
-                    name="academicRecommendationLetter"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue(
-                              "academicRecommendationLetter",
-                              uploadedUrl
-                            );
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.academicRecommendationLetter && (
-                    <span className="text-red-500 text-sm">
-                      {errors.academicRecommendationLetter.message}
-                    </span>
-                  )}
-                </div>
-                <div>
-                  <Label
-                    htmlFor="workRecommendationLetter"
-                    className="block text-sm font-medium leading-6 text-gray-900"
-                  >
-                    Work Recommendation Letter
-                  </Label>
-                  <Controller
-                    name="workRecommendationLetter"
-                    control={control}
-                    render={({ field }) => (
-                      <>
-                        <UploadDropzone
-                          endpoint="pdfUploader"
-                          onClientUploadComplete={(res) => {
-                            const uploadedUrl = res[0].ufsUrl;
-                            setPdfUrl(uploadedUrl);
-                            setValue("workRecommendationLetter", uploadedUrl);
-                            field.onChange(uploadedUrl);
-                            toast.success("PDF uploaded successfully!");
-                          }}
-                          onUploadError={(error) => {
-                            toast.error(`ERROR! ${error.message}`);
-                          }}
-                        />
-
-                        {field.value && (
-                          <a
-                            className="pt-4 flex space-x-3 items-center text-purple-600"
-                            target="_blank"
-                            href={field.value}
-                          >
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              viewBox="0 0 24 24"
-                              fill="currentColor"
-                              className="w-6 h-6"
-                            >
-                              <path
-                                fillRule="evenodd"
-                                d="M5.625 1.5H9a3.75 3.75 0 013.75 3.75v1.875c0 1.036.84 1.875 1.875 1.875H18a3.75 3.75 0 013.75 3.75v9a3.75 3.75 0 01-3.75 3.75H5.625a3.75 3.75 0 01-3.75-3.75v-9a3.75 3.75 0 013.75-3.75zm9.75 0H18a2.25 2.25 0 012.25 2.25v1.875c0 .404.336.75.75.75H15a.75.75 0 00-.75-.75V1.5zm-6 15h6a.75.75 0 00.75-.75V10.5a.75.75 0 00-.75-.75H9a.75.75 0 00-.75.75v5.25a.75.75 0 00.75.75z"
-                                clipRule="evenodd"
-                              />
-                            </svg>
-                            <span>View Document</span>
-                          </a>
-                        )}
-                      </>
-                    )}
-                  />
-                  {errors.workRecommendationLetter && (
-                    <span className="text-red-500 text-sm">
-                      {errors.workRecommendationLetter.message}
-                    </span>
-                  )}
-                </div>
+                          {errors[doc.name as FieldName]?.message && (
+                            <span className="text-red-500 text-sm">
+                              {errors[doc.name as FieldName]?.message}
+                            </span>
+                          )}
+                        </>
+                      )}
+                    />
+                  </div>
+                ))}
               </div>
             </motion.div>
           )}

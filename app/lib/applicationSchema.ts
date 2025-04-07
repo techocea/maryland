@@ -69,43 +69,43 @@ const applicationSchema = new mongoose.Schema(
       required: true,
     },
     passport: {
-      type: String,
+      type: Object,
       required: false,
     },
     degreeCertificate: {
-      type: String,
+      type: Object,
       required: false,
     },
     curriculumVitae: {
-      type: String,
+      type: Object,
       required: false,
     },
     alCertificate: {
-      type: String,
+      type: Object,
       required: false,
     },
     olCertificate: {
-      type: String,
+      type: Object,
       required: false,
     },
     statementOfPurpose: {
-      type: String,
+      type: Object,
       required: false,
     },
     degreeTranscript: {
-      type: String,
+      type: Object,
       required: false,
     },
     englishProficiencyTest: {
-      type: String,
+      type: Object,
       required: false,
     },
     academicRecommendationLetter: {
-      type: String,
+      type: Object,
       required: false,
     },
     workRecommendationLetter: {
-      type: String,
+      type: Object,
       required: false,
     },
   },

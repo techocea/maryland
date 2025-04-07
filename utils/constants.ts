@@ -1,4 +1,11 @@
-import { FooterSection, GalleryImage, NavItem, Service, Testimonial, WhyUs } from "@/types";
+import {
+  FooterSection,
+  GalleryImage,
+  NavItem,
+  Service,
+  Testimonial,
+  WhyUs,
+} from "@/types";
 import talk from "@/public/talk.png";
 import application from "@/public/application.png";
 import trust from "@/public/trust.png";
@@ -90,15 +97,15 @@ export const SelectionValues = [
   {
     id: 1,
     provinces: [
-      "Central ",
-      "Eastern ",
-      "North Central ",
-      "Northern ",
-      "North Western ",
-      "sabaragamuwa ",
-      "Southern ",
-      "Uva ",
-      "Western ",
+      "Central",
+      "Eastern",
+      "North Central",
+      "Northern",
+      "North Western",
+      "sabaragamuwa",
+      "Southern",
+      "Uva",
+      "Western",
     ],
   },
   {
@@ -130,6 +137,22 @@ export const SelectionValues = [
       "Vavuniya",
     ],
   },
+];
+
+export const DocumentFields = [
+  { label: "Passport", name: "passport" },
+  { label: "Degree Certificate", name: "degreeCertificate" },
+  { label: "Curriculum Vitae", name: "curriculumVitae" },
+  { label: "A/L Certificate", name: "alCertificate" },
+  { label: "O/L Certificate", name: "olCertificate" },
+  { label: "Statement Of Purpose", name: "statementOfPurpose" },
+  { label: "Degree Transcript", name: "degreeTranscript" },
+  { label: "English Proficiency Test", name: "englishProficiencyTest" },
+  {
+    label: "Academic Recommendation Letter",
+    name: "academicRecommendationLetter",
+  },
+  { label: "Work Recommendation Letter", name: "workRecommendationLetter" },
 ];
 
 export const WhyUsData: WhyUs[] = [
