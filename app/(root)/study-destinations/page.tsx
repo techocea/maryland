@@ -1,5 +1,5 @@
 import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { UniversityData } from "@/utils/constants";
+import { UNIVERSITY_DATA } from "@/utils/constants";
 import Image from "next/image";
 import React from "react";
 
@@ -7,7 +7,7 @@ const page = () => {
   return (
     <main className="py-10 px-8 xl:mx-auto w-full">
       <div className="flex flex-col space-y-20">
-        {UniversityData.map((item) => (
+        {UNIVERSITY_DATA.map((item) => (
           <div key={item.id}>
             <h2 className="capitalize font-semibold text-muted-foreground text-2xl">
               {item.country}

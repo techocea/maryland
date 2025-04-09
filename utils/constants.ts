@@ -1,10 +1,17 @@
-import { FooterSection, GalleryImage, NavItem, Service, Testimonial, WhyUs } from "@/types";
+import {
+  FooterSection,
+  GalleryImage,
+  NavItem,
+  Service,
+  Testimonial,
+  WhyUs,
+} from "@/types";
 import talk from "@/public/talk.png";
 import application from "@/public/application.png";
 import trust from "@/public/trust.png";
 import visa from "@/public/visa.png";
 
-export const NavItems: NavItem[] = [
+export const NAVITEMS: NavItem[] = [
   { id: 1, label: "Home", href: "/" },
   { id: 2, label: "About", href: "/about" },
   { id: 3, label: "Study Destinations", href: "/study-destinations" },
@@ -12,50 +19,180 @@ export const NavItems: NavItem[] = [
   { id: 5, label: "Contact", href: "/contact" },
 ];
 
-export const Gallery: GalleryImage[] = [
+export const GALLERY:GalleryImage[]= [
   {
-    src: "/testimonial6.jpeg",
-    alt: "testimonial 6",
-    aspectRatio: "square",
+    id: 1,
+    title: "success stories",
+    images: [
+      {
+        id: 1,
+        src: "/testimonial6.jpeg",
+        alt: "testimonial 6",
+        aspectRatio: "square",
+      },
+      {
+        id: 2,
+        src: "/testimonial7.jpeg",
+        alt: "testimonial 7",
+        aspectRatio: "portrait",
+      },
+      {
+        id: 3,
+        src: "/testimonial8.jpeg",
+        alt: "testimonial 8",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 4,
+        src: "/testimonial9.jpeg",
+        alt: "testimonial 9",
+        aspectRatio: "square",
+      },
+      {
+        id: 5,
+        src: "/testimonial10.jpeg",
+        alt: "testimonial 10",
+        aspectRatio: "portrait",
+      },
+      {
+        id: 6,
+        src: "/testimonial11.jpeg",
+        alt: "testimonial 11",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 7,
+        src: "/testimonial12.jpeg",
+        alt: "testimonial 12",
+        aspectRatio: "square",
+      },
+      {
+        id: 8,
+        src: "/testimonial5.jpeg",
+        alt: "testimonial 5",
+        aspectRatio: "landscape",
+      }
+    ],
   },
   {
-    src: "/testimonial7.jpeg",
-    alt: "testimonial 7",
-    aspectRatio: "portrait",
+    id: 2,
+    title: "ireland fair - 2025",
+    images: [
+      // {
+      //   id: 9,
+      //   src: "/ireland-fair1.jpeg",
+      //   alt: "ireland fair 1",
+      //   aspectRatio: "square",
+      // },
+      {
+        id: 10,
+        src: "/ireland-fair2.jpeg",
+        alt: "ireland fair 2",
+        aspectRatio: "portrait",
+      },
+      {
+        id: 11,
+        src: "/ireland-fair3.jpg",
+        alt: "ireland fair 3",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 12,
+        src: "/ireland-fair4.jpg",
+        alt: "ireland fair 4",
+        aspectRatio: "square",
+      },
+      {
+        id: 13,
+        src: "/ireland-fair5.jpg",
+        alt: "ireland fair 5",
+        aspectRatio: "portrait",
+      },
+      {
+        id: 14,
+        src: "/ireland-fair6.jpg",
+        alt: "ireland fair 6",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 15,
+        src: "/ireland-fair7.jpg",
+        alt: "ireland fair 7",
+        aspectRatio: "square",
+      },
+      {
+        id: 16,
+        src: "/ireland-fair8.jpg",
+        alt: "ireland fair 8",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 17,
+        src: "/ireland-fair9.jpg",
+        alt: "ireland fair 9",
+        aspectRatio: "square",
+      },
+      {
+        id: 18,
+        src: "/ireland-fair10.jpg",
+        alt: "ireland fair 10",
+        aspectRatio: "portrait",
+      }
+    ],
   },
   {
-    src: "/testimonial8.jpeg",
-    alt: "testimonial 8",
-    aspectRatio: "landscape",
+    id: 2,
+    title: "griffith college fair - 2025",
+    images: [
+      {
+        id: 19,
+        src: "/griffith-fair1.JPG",
+        alt: "griffith fair 1",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 20,
+        src: "/griffith-fair2.JPG",
+        alt: "griffith fair 2",
+        aspectRatio: "square",
+      },
+      {
+        id: 21,
+        src: "/griffith-fair3.JPG",
+        alt: "griffith fair 3",
+        aspectRatio: "portrait",
+      },
+      {
+        id: 22,
+        src: "/griffith-fair4.JPG",
+        alt: "griffith fair 4",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 23,
+        src: "/griffith-fair5.JPG",
+        alt: "griffith fair 5",
+        aspectRatio: "square",
+      },
+      {
+        id: 24,
+        src: "/griffith-fair6.JPG",
+        alt: "griffith fair 6",
+        aspectRatio: "landscape",
+      },
+      {
+        id: 25,
+        src: "/griffith-fair7.JPG",
+        alt: "griffith fair 7",
+        aspectRatio: "square",
+      }
+    ]
   },
-  {
-    src: "/testimonial9.jpeg",
-    alt: "testimonial 9",
-    aspectRatio: "square",
-  },
-  {
-    src: "/testimonial10.jpeg",
-    alt: "testimonial 10",
-    aspectRatio: "portrait",
-  },
-  {
-    src: "/testimonial11.jpeg",
-    alt: "testimonial 11",
-    aspectRatio: "landscape",
-  },
-  {
-    src: "/testimonial12.jpeg",
-    alt: "testimonial 12",
-    aspectRatio: "square",
-  },
-  {
-    src: "/testimonial5.jpeg",
-    alt: "testimonial 5",
-    aspectRatio: "landscape",
-  },
+   
+
 ];
 
-export const steps = [
+export const STEPS = [
   {
     id: "Step 1",
     name: "Personal Information",
@@ -86,7 +223,7 @@ export const steps = [
   },
 ];
 
-export const SelectionValues = [
+export const SELECTION_VALUES = [
   {
     id: 1,
     provinces: [
@@ -132,7 +269,7 @@ export const SelectionValues = [
   },
 ];
 
-export const WhyUsData: WhyUs[] = [
+export const WHY_US: WhyUs[] = [
   {
     id: 1,
     image: talk,
@@ -163,7 +300,7 @@ export const WhyUsData: WhyUs[] = [
   },
 ];
 
-export const TestimonialData: Testimonial[] = [
+export const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     saying:
@@ -206,7 +343,7 @@ export const TestimonialData: Testimonial[] = [
   },
 ];
 
-export const ServiceData: Service[] = [
+export const SERVICE_DATA: Service[] = [
   {
     id: "01",
     image: "/counselling.png",
@@ -249,7 +386,7 @@ export const ServiceData: Service[] = [
   },
 ];
 
-export const UniversityData = [
+export const UNIVERSITY_DATA = [
   {
     id: 1,
     country: "canada",
@@ -318,7 +455,7 @@ export const UniversityData = [
   },
 ];
 
-export const FooterData: FooterSection[] = [
+export const FOOTER_DATA: FooterSection[] = [
   {
     id: 1,
     label: "Company",

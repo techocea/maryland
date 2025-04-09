@@ -1,6 +1,6 @@
 import React from "react";
 import WhyUsCard from "./WhyUsCard";
-import { WhyUsData } from "@/utils/constants";
+import { WHY_US } from "@/utils/constants";
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
@@ -17,7 +17,7 @@ const WhyUs = () => {
           </h3>
         </div>
         <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-2 grid-cols-1 gap-4 mt-4">
-          {WhyUsData.map((item) => (
+          {WHY_US.map((item) => (
             <WhyUsCard key={item.id} item={item} />
           ))}
         </div>

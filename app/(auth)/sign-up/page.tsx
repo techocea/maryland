@@ -10,7 +10,7 @@ const SignUpPage = () => {
             Profile Creation
           </h1>
           <p className="text-sm text-muted-foreground font-semibold">
-            You&apos;re few steps away from applying to your dream university
+            You&apos;re few STEPS away from applying to your dream university
           </p>
         </div>
         <SignUpForm />

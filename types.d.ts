@@ -56,11 +56,18 @@ export type SidebarTypes = {
 };
 
 export type GalleryImage = {
+  id: number;
+  title: string;
+  images: ImageType[];
+};
+
+export type StylishGalleryProps = {
+  images: ImageType[];
+};
+
+export type ImageType = {
+  id: number;
   src: string;
   alt: string;
   aspectRatio?: "square" | "portrait" | "landscape";
-}
-
-export type StylishGalleryProps = {
-  images: GalleryImage[];
-}
+};

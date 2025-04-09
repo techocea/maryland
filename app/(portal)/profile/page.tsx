@@ -7,7 +7,7 @@ import { cn } from "@/lib/utils";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { SelectionValues, steps } from "@/utils/constants";
+import { SELECTION_VALUES, STEPS } from "@/utils/constants";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 import {
   Select,
@@ -46,17 +46,17 @@ const ProfilePage = () => {
   });
 
   const provinces =
-    SelectionValues.find((item) => item.id == 1)?.provinces || [];
+    SELECTION_VALUES.find((item) => item.id == 1)?.provinces || [];
   const districts =
-    SelectionValues.find((item) => item.id == 2)?.districts || [];
+    SELECTION_VALUES.find((item) => item.id == 2)?.districts || [];
 
   const next = async () => {
-    const fields = steps[currentStep].fields;
+    const fields = STEPS[currentStep].fields;
     const output = await trigger(fields as FieldName[], { shouldFocus: true });
 
     if (!output) return;
 
-    if (currentStep < steps.length - 1) {
+    if (currentStep < STEPS.length - 1) {
       setPreviousStep(currentStep);
       setCurrentStep((step) => step + 1);
     }
@@ -121,7 +121,7 @@ const ProfilePage = () => {
             role="list"
             className="space-y-4 md:flex md:space-x-8 md:space-y-0"
           >
-            {steps.map((step, index) => (
+            {STEPS.map((step, index) => (
               <li key={step.name} className="max-w-md w-full">
                 {currentStep > index ? (
                   <div className="flex  w-full flex-col border-l-4 border-sky-600 py-2 pl-4 transition-colors md:border-l-0 md:border-t-4 md:pb-0 md:pl-0 md:pt-4">
@@ -1220,7 +1220,7 @@ const ProfilePage = () => {
               <button
                 type="button"
                 onClick={next}
-                disabled={currentStep === steps.length - 1}
+                disabled={currentStep === STEPS.length - 1}
                 className={cn(
                   currentStep === 3
                     ? "hidden"

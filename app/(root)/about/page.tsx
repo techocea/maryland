@@ -2,7 +2,7 @@ import React from "react";
 import Image from "next/image";
 import DirectorMessage from "@/components/DirectorMessage";
 import WhyUs from "@/components/WhyUs";
-import { ServiceData } from "@/utils/constants";
+import { SERVICE_DATA } from "@/utils/constants";
 import {
   Card,
   CardContent,
@@ -14,14 +14,19 @@ import CTASection from "@/components/CTASection";
 const AboutPage = () => {
   return (
     <main className="">
-      <div className="relative h-screen">
+      <div className="relative h-80 md:h-96 lg:min-h-[80vh] flex items-center justify-center">
         <Image
           src="/about-banner.png"
           fill
-          quality={100}
+          sizes="(max-width: 767px) 100vw, (max-width: 1023px) 100vw"
+          objectFit="cover"
           alt="about image"
-          className="w-full object-cover"
+          className="absolute top-0 w-full h-full"
         />
+        <div className="absolute inset-0 bg-black opacity-40"></div>
+        <div className="absolute text-white text-4xl font-bold z-10">
+          About Us
+        </div>
       </div>
       <DirectorMessage />
       <WhyUs />
@@ -50,8 +55,8 @@ const AboutPage = () => {
               your journey is simplified
             </h3>
           </div>
-          <div className="grid lg:grid-cols-4 md:grid-cols-3 grid-cols-2 gap-4 mt-4 sm:mt-8 lg:mt-12">
-            {ServiceData.map((item) => (
+          <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 mt-4 sm:mt-8 lg:mt-12">
+            {SERVICE_DATA.map((item) => (
               <Card
                 key={item.id}
                 className="flex flex-col items-center justify-center"
@@ -68,7 +73,7 @@ const AboutPage = () => {
                   </span>
                 </CardHeader>
                 <CardContent>
-                  <CardDescription className="max-w-[160px] text-center text-sm font-bold ">
+                  <CardDescription className="max-w-[160px] text-center font-bold capitalize">
                     {item.title}
                   </CardDescription>
                 </CardContent>

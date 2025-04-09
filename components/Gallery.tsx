@@ -1,6 +1,6 @@
 "use client";
 
-import { GalleryImage } from "@/types";
+import { ImageType } from "@/types";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
@@ -13,18 +13,18 @@ interface iAppProps {
 }
 
 const StylishGallery = ({ item }: iAppProps) => {
-  const [selectedImage, setSelectedImage] = useState<GalleryImage | null>(null);
+  const [selectedImage, setSelectedImage] = useState<ImageType | null>(null);
 
   return (
     <>
       <div className="w-full">
-        <div className="rounded-lg">
+        <div className="rounded-lg w-48 h-48 relative">
           <Image
             src={item.src}
             alt={item.alt}
-            width={400}
-            height={400}
-            className="h-64 w-full object-cover transition-transform duration-300 hover:scale-105"
+            fill
+            objectFit="cover"
+            className="h-64 w-full transition-transform duration-300 hover:scale-105"
           />
         </div>
       </div>

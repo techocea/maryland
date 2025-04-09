@@ -6,7 +6,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from "@/components/ui/carousel";
-import { TestimonialData } from "@/utils/constants";
+import { TESTIMONIALS } from "@/utils/constants";
 import { Card, CardHeader } from "./ui/card";
 import Image from "next/image";
 
@@ -24,7 +24,7 @@ const TestimonialSection = () => {
         <div className="mt-4">
           <Carousel className="w-full max-w-xs sm:max-w-md md:max-w-lg">
             <CarouselContent>
-              {TestimonialData.map((item) => (
+              {TESTIMONIALS.map((item) => (
                 <CarouselItem key={item.id} className="">
                   <Card className="rounded-lg">
                     <CardHeader className="flex flex-col md:flex-row items-start gap-x-4">

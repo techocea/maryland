@@ -1,5 +1,5 @@
 import React from "react";
-import { FooterData } from "@/utils/constants";
+import { FOOTER_DATA } from "@/utils/constants";
 import { FooterSection } from "@/types";
 import { Facebook, Youtube } from "lucide-react";
 import Image from "next/image";
@@ -34,7 +34,7 @@ const Footer = () => {
           </span>
         </div>
         <div className="flex flex-col max-lg:space-y-6 lg:flex-row justify-between w-full">
-          {FooterData.map((section: FooterSection) => (
+          {FOOTER_DATA.map((section: FooterSection) => (
             <div key={section.id} className="flex flex-col max-w-56 w-full">
               {section.label && (
                 <h3 className="uppercase text-sm font-semibold">

@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { cn } from "@/lib/utils";
 import { usePathname } from "next/navigation";
-import { NavItems } from "@/utils/constants";
+import { NAVITEMS } from "@/utils/constants";
 import { Button } from "./ui/button";
 import {
   DropdownMenu,
@@ -31,7 +31,7 @@ const Navbar = () => {
           />
         </div>
         <div className="hidden lg:flex items-center justify-center gap-x-8">
-          {NavItems.map((item) => (
+          {NAVITEMS.map((item) => (
             <ul key={item.id}>
               <Link
                 href={item.href}
@@ -60,7 +60,7 @@ const Navbar = () => {
               <DropdownMenuContent align="end">
                 <DropdownMenuItem>
                   <DropdownMenuItem className="flex flex-col items-start gap-y-4">
-                    {NavItems.map((item) => (
+                    {NAVITEMS.map((item) => (
                       <Link
                         key={item.id}
                         href={item.href}
