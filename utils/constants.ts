@@ -496,8 +496,8 @@ export const FOOTER_DATA: FooterSection[] = [
     id: 3,
     label: "Contact",
     contacts: [
-      "+94 77  771 1335",
-      "info@marylanconsultancy.lk",
+      "+94 75 949 499",
+      "contact@marylanconsultancy.lk",
       "135, 2nd Floor, Tisara Plaza, Dutugamunu Street, Kohuwala, Nugegoda, Sri Lanka",
     ],
   },

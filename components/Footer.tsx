@@ -8,7 +8,7 @@ import { Separator } from "./ui/separator";
 
 const Footer = () => {
   return (
-    <footer className="bg-secondary flex flex-col p-10">
+    <footer className="bg-secondary flex flex-col p-6 lg:p-10">
       <div className="flex flex-col lg:flex-row lg:items-start max-lg:space-y-10 lg:space-x-28">
         <div>
           <Image
@@ -72,7 +72,7 @@ const Footer = () => {
       </div>
       <Separator className="my-4" />
       <div className="text-center text-xs">
-        © {new Date().getFullYear()} Maryland Consultancy. All rights reserved.
+        © {new Date().getFullYear()} Maryland Consultancy. All Rights Reserved.
         <br />
         Designed and Developed by Webizera
       </div>
