@@ -4,35 +4,30 @@ import { Button } from "./ui/button";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import hat from "@/public/hat.png";
-import Image, { StaticImageData } from "next/image";
+import Image from "next/image";
 
 const CTASection = () => {
   return (
-    <main className="bg-primary min-h-full py-20 px-4 flex items-center justify-center w-full">
-      <Card className="bg-white md:max-w-lg lg:max-w-[836px] w-full flex text-center items-center justify-center py-10">
-        <div className="relative">
-          <Image
-            src={hat as StaticImageData}
-            alt="design hat"
-            className="max-w-20 max-h-20 sm:w-2/3 absolute top-[-50px] left-[40px]"
-          />
-          <div className="flex flex-col space-y-5 sm:space-y-4">
-            <h2 className="text-xl md:text-2xl lg:text-4xl font-bold capitalize text-muted">
-              come join us
-            </h2>
-            <p className="text-sm lg:text-lg font-semibold text-muted-foreground">
-              We are here to provide you with comprehensive support
-              <br /> and guidance throughout your entire study abroad journey.
-            </p>
-            <div>
-              <Button>
-                <Link href="/contact">Book an Appointment</Link>
-                <ArrowRight />
-              </Button>
-            </div>
-          </div>
-        </div>
-      </Card>
+    <main className="bg-white min-h-64 relative px-4 flex flex-col items-center justify-center w-full gap-6">
+      <h2 className="text-primary text-2xl md:text-3xl lg:text-4xl font-bold text-center">
+      Ready to Start Your Study Abroad Journey?
+      </h2>
+      <p className="text-muted-foreground font-semibold text-center text-sm lg:text-lg max-w-2xl">
+      Connect with us on WhatsApp for instant support and guidance throughout your educational journey abroad.
+      </p>
+      <div className="flex gap-4">
+      <Button variant="secondary" asChild>
+        <Link href="https://wa.me/+94759494999" target="_blank" rel="noopener noreferrer">
+        Chat on WhatsApp
+        </Link>
+      </Button>
+      <Button asChild>
+        <Link href="/contact">
+        Book an Appointment
+        <ArrowRight className="ml-2 h-4 w-4" />
+        </Link>
+      </Button>
+      </div>
     </main>
   );
 };

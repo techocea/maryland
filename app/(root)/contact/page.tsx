@@ -1,7 +1,8 @@
 import React from "react";
 import ContactForm from "@/components/ContactForm";
 import { Card } from "@/components/ui/card";
-import { Mail, MapPin, PhoneIcon, StrikethroughIcon } from "lucide-react";
+import { Mail, MapPin, MessageCircle, PhoneIcon } from "lucide-react";
+import Link from "next/link";
 
 const page = () => {
   return (
@@ -23,6 +24,19 @@ const page = () => {
                   <PhoneIcon />
                 </span>
                 <p className="text-sm">+94 75 949 4999</p>
+              </div>
+              <div className="flex items-center gap-3 mt-2 ">
+                <span>
+                  <MessageCircle />
+                </span>
+                <Link
+                  href="https://wa.me/+94759494999"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-sm"
+                >
+                  +94 75 949 4999
+                </Link>
               </div>
             </div>
             <div className="w-full h-auto bg-none text-white rounded-xl px-2 lg:px-8 py-4">

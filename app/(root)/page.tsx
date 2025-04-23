@@ -6,19 +6,20 @@ import AccordionSection from "@/components/AccordionSection";
 import TestimonialSection from "@/components/TestimonialSection";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { ArrowRight } from "lucide-react";
 
 export default function Home() {
   return (
     <>
-      <main className="flex flex-col gap-10 lg:flex-row items-center justify-between py-8 px-4 lg:px-10">
+      <main className="flex flex-col gap-10 lg:flex-row items-center justify-between pb-8 px-4 lg:px-10">
         <div className="max-w-md lg:max-w-lg w-full">
           <div className="relative">
             <Image
-              src={"/hat.png"}
-              alt="design hat"
-              fill
-              quality={100}
-              className="max-w-20 max-h-20  sm:w-2/3 absolute top-0 left-0 sm:left-[-20px]"
+              src="/arrow.png"
+              alt="design arrow"
+              width={150}
+              height={120}
+              className="absolute top-0 -right-20 hidden lg:block -rotate-180"
             />
           </div>
           <div className="flex flex-col gap-y-2 mt-16 text-center lg:text-left">
@@ -34,21 +35,24 @@ export default function Home() {
               affordable cost at your best university
             </p>
           </div>
-          <div className="flex sm:flex-row lg:flex-row items-center justify-center lg:justify-start gap-4 mt-4">
-            <Button asChild>
+          <div className="grid grid-cols-2 gap-4 mt-4">
+            <Button variant="default" size="lg" className="rounded-full">
               <Link href="/sign-up">Join Now</Link>
+              <ArrowRight />
             </Button>
-            <Button variant="outline" asChild>
+
+            <Button variant="outline" size="lg" className="rounded-full">
               <Link href="/about">Learn More</Link>
             </Button>
           </div>
         </div>
-        <div className="lg:mr-20">
+        <div className="w-full">
           <Image
-            src="/hero-image.png"
-            width={345}
-            height={507}
-            className="object-cover sm:w-[300px] lg:w-full"
+            src="/hero-image-2.png"
+            width={945}
+            height={707}
+            quality={100}
+            className="object-center w-full"
             alt="Hero image"
           />
         </div>

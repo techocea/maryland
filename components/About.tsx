@@ -9,10 +9,10 @@ const About = () => {
       <div className="flex items-center justify-center flex-col lg:flex-row lg:gap-x-10 gap-y-16">
         <div className="flex-1 flex items-center justify-center relative sm:max-w-md w-full lg:max-w-[540px] z-10">
           <Image
-            src="/about-image.png"
-            width={402}
-            height={467}
-            className="w-2/3"
+            src="/about-image.jpeg"
+            width={352}
+            height={367}
+            className="rounded-2xl"
             alt="About Image"
           />
 

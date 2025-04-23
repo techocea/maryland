@@ -7,7 +7,7 @@ import {
 
 const AccordionSection = () => {
   return (
-    <main className="h-full py-20">
+    <main className="h-full bg-secondary py-20">
       <div className="flex flex-col gap-y-4 text-center items-center justify-center">
         <h1 className="sub-heading">faq</h1>
         <h3 className="text-xl md:text-2xl lg:text-4xl font-bold capitalize">
