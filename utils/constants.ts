@@ -28,49 +28,49 @@ export const GALLERY:GalleryImage[]= [
         id: 1,
         src: "/testimonial6.jpeg",
         alt: "testimonial 6",
-        aspectRatio: "square",
+        
       },
       {
         id: 2,
         src: "/testimonial7.jpeg",
         alt: "testimonial 7",
-        aspectRatio: "portrait",
+        
       },
       {
         id: 3,
         src: "/testimonial8.jpeg",
         alt: "testimonial 8",
-        aspectRatio: "landscape",
+        
       },
-      {
-        id: 4,
-        src: "/testimonial9.jpeg",
-        alt: "testimonial 9",
-        aspectRatio: "square",
-      },
+      // {
+      //   id: 4,
+      //   src: "/testimonial9.jpeg",
+      //   alt: "testimonial 9",
+        
+      // },
       {
         id: 5,
         src: "/testimonial10.jpeg",
         alt: "testimonial 10",
-        aspectRatio: "portrait",
+        
       },
       {
         id: 6,
         src: "/testimonial11.jpeg",
         alt: "testimonial 11",
-        aspectRatio: "landscape",
+        
       },
-      {
-        id: 7,
-        src: "/testimonial12.jpeg",
-        alt: "testimonial 12",
-        aspectRatio: "square",
-      },
+      // {
+      //   id: 7,
+      //   src: "/testimonial12.jpeg",
+      //   alt: "testimonial 12",
+        
+      // },
       {
         id: 8,
         src: "/testimonial5.jpeg",
         alt: "testimonial 5",
-        aspectRatio: "landscape",
+        
       }
     ],
   },
@@ -82,61 +82,61 @@ export const GALLERY:GalleryImage[]= [
       //   id: 9,
       //   src: "/ireland-fair1.jpeg",
       //   alt: "ireland fair 1",
-      //   aspectRatio: "square",
+      //   
       // },
       {
         id: 10,
         src: "/ireland-fair2.jpeg",
         alt: "ireland fair 2",
-        aspectRatio: "portrait",
+        
       },
       {
         id: 11,
         src: "/ireland-fair3.jpg",
         alt: "ireland fair 3",
-        aspectRatio: "landscape",
+        
       },
       {
         id: 12,
         src: "/ireland-fair4.jpg",
         alt: "ireland fair 4",
-        aspectRatio: "square",
+        
       },
       {
         id: 13,
         src: "/ireland-fair5.jpg",
         alt: "ireland fair 5",
-        aspectRatio: "portrait",
+        
       },
-      {
-        id: 14,
-        src: "/ireland-fair6.jpg",
-        alt: "ireland fair 6",
-        aspectRatio: "landscape",
-      },
+      // {
+      //   id: 14,
+      //   src: "/ireland-fair6.jpg",
+      //   alt: "ireland fair 6",
+        
+      // },
       {
         id: 15,
         src: "/ireland-fair7.jpg",
         alt: "ireland fair 7",
-        aspectRatio: "square",
+        
       },
       {
         id: 16,
         src: "/ireland-fair8.jpg",
         alt: "ireland fair 8",
-        aspectRatio: "landscape",
+        
       },
       {
         id: 17,
         src: "/ireland-fair9.jpg",
         alt: "ireland fair 9",
-        aspectRatio: "square",
+        
       },
       {
         id: 18,
         src: "/ireland-fair10.jpg",
         alt: "ireland fair 10",
-        aspectRatio: "portrait",
+        
       }
     ],
   },
@@ -148,44 +148,44 @@ export const GALLERY:GalleryImage[]= [
         id: 19,
         src: "/griffith-fair1.JPG",
         alt: "griffith fair 1",
-        aspectRatio: "landscape",
+        
       },
       {
         id: 20,
         src: "/griffith-fair2.JPG",
         alt: "griffith fair 2",
-        aspectRatio: "square",
+        
       },
       {
         id: 21,
         src: "/griffith-fair3.JPG",
         alt: "griffith fair 3",
-        aspectRatio: "portrait",
+        
       },
       {
         id: 22,
         src: "/griffith-fair4.JPG",
         alt: "griffith fair 4",
-        aspectRatio: "landscape",
+        
       },
       {
         id: 23,
         src: "/griffith-fair5.JPG",
         alt: "griffith fair 5",
-        aspectRatio: "square",
+        
       },
       {
         id: 24,
         src: "/griffith-fair6.JPG",
         alt: "griffith fair 6",
-        aspectRatio: "landscape",
+        
       },
-      {
-        id: 25,
-        src: "/griffith-fair7.JPG",
-        alt: "griffith fair 7",
-        aspectRatio: "square",
-      }
+      // {
+      //   id: 25,
+      //   src: "/griffith-fair7.JPG",
+      //   alt: "griffith fair 7",
+        
+      // }
     ]
   },
    
@@ -496,7 +496,7 @@ export const FOOTER_DATA: FooterSection[] = [
     id: 3,
     label: "Contact",
     contacts: [
-      "+94 75 949 499",
+      "+94 75 112 81 5895",
       "contact@marylanconsultancy.lk",
       "135, 2nd Floor, Tisara Plaza, Dutugamunu Street, Kohuwala, Nugegoda, Sri Lanka",
     ],
