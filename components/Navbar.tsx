@@ -19,7 +19,7 @@ const Navbar = () => {
   const pathname = usePathname();
 
   return (
-    <header className="px-4 py-2 md:px-4 md:py-2 lg:py-4 lg:px-10 w-full">
+    <header className="px-4 py-2 md:px-4 md:py-2 lg:py-8 lg:px-20 w-full">
       <div className="flex items-center justify-between">
         <div>
           <Image

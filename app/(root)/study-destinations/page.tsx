@@ -1,11 +1,15 @@
+"use client";
+
 import React from "react";
 import Image from "next/image";
-import { UNIVERSITY_DATA } from "@/utils/constants";
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { ArrowRight, Globe, SendHorizonal } from "lucide-react";
+import { useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { Globe, SendHorizonal } from "lucide-react";
+import { UNIVERSITY_DATA } from "@/utils/constants";
 
 const page = () => {
+  const router = useRouter();
+
   return (
     <main className="">
       <div className="py-10 px-8 xl:mx-auto w-full flex flex-col text-center gap-4">
@@ -25,7 +29,7 @@ const page = () => {
         {UNIVERSITY_DATA.map((item) => {
           return (
             <React.Fragment key={item.id}>
-              <div className="relative bg-primary py-16 px-10 flex flex-col justify-between">
+              <div className="relative bg-primary py-16 px-10 flex flex-col justify-between border">
                 <div className="relative z-10">
                   <div className="w-12 h-12">
                     <Image
@@ -44,6 +48,13 @@ const page = () => {
                   </p>
                   <Button
                     variant="ghost"
+                    onClick={() =>
+                      router.push(
+                        `/study-destinations/${item.country
+                          .replace(/\s+/g, "-")
+                          .toLowerCase()}`
+                      )
+                    }
                     className="text-white text-sm font-semibold"
                   >
                     Read More <SendHorizonal />
