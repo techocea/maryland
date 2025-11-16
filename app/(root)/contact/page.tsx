@@ -23,7 +23,7 @@ const page = () => {
                 <span>
                   <PhoneIcon />
                 </span>
-                <p className="text-sm">+94 75 112 81 5895</p>
+                <p className="text-sm">+94 75 949 4444</p>
               </div>
               <div className="flex items-center gap-3 mt-2 ">
                 <span>
@@ -35,7 +35,7 @@ const page = () => {
                   rel="noopener noreferrer"
                   className="text-sm"
                 >
-                  +94 75 112 81 5895
+                  +94 75 949 4999
                 </Link>
               </div>
             </div>

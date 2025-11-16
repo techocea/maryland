@@ -11,7 +11,7 @@ export async function POST(req: NextRequest) {
     const isUserExisits = await User.findOne({ email });
 
     if (isUserExisits) {
-    return NextResponse.json(
+      return NextResponse.json(
         { message: "User already exists" },
         { status: 400 }
       );
@@ -22,7 +22,6 @@ export async function POST(req: NextRequest) {
     await User.create({
       email,
       password: hashedPassword,
-   
     });
 
     return NextResponse.json(

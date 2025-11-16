@@ -127,7 +127,7 @@ export const GALLERY: GalleryImage[] = [
     ],
   },
   {
-    id: 2,
+    id: 3,
     title: "griffith college fair - 2025",
     images: [
       {
@@ -711,7 +711,7 @@ export const FOOTER_DATA: FooterSection[] = [
     label: "Contact",
     contacts: [
       "+94 75 949 4999 - +94 75 949 4444",
-      "contact@marylanconsultancy.lk",
+      "contact@marylandconsultancy.lk",
       "135, 2nd Floor, Tisara Plaza, Dutugamunu Street, Kohuwala, Nugegoda, Sri Lanka",
     ],
   },
