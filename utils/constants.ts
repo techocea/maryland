@@ -14,12 +14,12 @@ import visa from "@/public/visa.png";
 export const NAVITEMS: NavItem[] = [
   { id: 1, label: "Home", href: "/" },
   { id: 2, label: "About", href: "/about" },
-  { id: 3, label: "Study Destinations", href: "/study-destinations" },
+  { id: 3, label: "Destinations", href: "/study-destinations" },
   { id: 4, label: "Gallery", href: "/gallery" },
   { id: 5, label: "Contact", href: "/contact" },
 ];
 
-export const GALLERY:GalleryImage[]= [
+export const GALLERY: GalleryImage[] = [
   {
     id: 1,
     title: "success stories",
@@ -28,50 +28,44 @@ export const GALLERY:GalleryImage[]= [
         id: 1,
         src: "/testimonial6.jpeg",
         alt: "testimonial 6",
-        
       },
       {
         id: 2,
         src: "/testimonial7.jpeg",
         alt: "testimonial 7",
-        
       },
       {
         id: 3,
         src: "/testimonial8.jpeg",
         alt: "testimonial 8",
-        
       },
       // {
       //   id: 4,
       //   src: "/testimonial9.jpeg",
       //   alt: "testimonial 9",
-        
+
       // },
       {
         id: 5,
         src: "/testimonial10.jpeg",
         alt: "testimonial 10",
-        
       },
       {
         id: 6,
         src: "/testimonial11.jpeg",
         alt: "testimonial 11",
-        
       },
       // {
       //   id: 7,
       //   src: "/testimonial12.jpeg",
       //   alt: "testimonial 12",
-        
+
       // },
       {
         id: 8,
         src: "/testimonial5.jpeg",
         alt: "testimonial 5",
-        
-      }
+      },
     ],
   },
   {
@@ -82,62 +76,54 @@ export const GALLERY:GalleryImage[]= [
       //   id: 9,
       //   src: "/ireland-fair1.jpeg",
       //   alt: "ireland fair 1",
-      //   
+      //
       // },
       {
         id: 10,
         src: "/ireland-fair2.jpeg",
         alt: "ireland fair 2",
-        
       },
       {
         id: 11,
         src: "/ireland-fair3.jpg",
         alt: "ireland fair 3",
-        
       },
       {
         id: 12,
         src: "/ireland-fair4.jpg",
         alt: "ireland fair 4",
-        
       },
       {
         id: 13,
         src: "/ireland-fair5.jpg",
         alt: "ireland fair 5",
-        
       },
       // {
       //   id: 14,
       //   src: "/ireland-fair6.jpg",
       //   alt: "ireland fair 6",
-        
+
       // },
       {
         id: 15,
         src: "/ireland-fair7.jpg",
         alt: "ireland fair 7",
-        
       },
       {
         id: 16,
         src: "/ireland-fair8.jpg",
         alt: "ireland fair 8",
-        
       },
       {
         id: 17,
         src: "/ireland-fair9.jpg",
         alt: "ireland fair 9",
-        
       },
       {
         id: 18,
         src: "/ireland-fair10.jpg",
         alt: "ireland fair 10",
-        
-      }
+      },
     ],
   },
   {
@@ -148,48 +134,40 @@ export const GALLERY:GalleryImage[]= [
         id: 19,
         src: "/griffith-fair1.JPG",
         alt: "griffith fair 1",
-        
       },
       {
         id: 20,
         src: "/griffith-fair2.JPG",
         alt: "griffith fair 2",
-        
       },
       {
         id: 21,
         src: "/griffith-fair3.JPG",
         alt: "griffith fair 3",
-        
       },
       {
         id: 22,
         src: "/griffith-fair4.JPG",
         alt: "griffith fair 4",
-        
       },
       {
         id: 23,
         src: "/griffith-fair5.JPG",
         alt: "griffith fair 5",
-        
       },
       {
         id: 24,
         src: "/griffith-fair6.JPG",
         alt: "griffith fair 6",
-        
       },
       // {
       //   id: 25,
       //   src: "/griffith-fair7.JPG",
       //   alt: "griffith fair 7",
-        
-      // }
-    ]
-  },
-   
 
+      // }
+    ],
+  },
 ];
 
 export const STEPS = [
@@ -389,68 +367,140 @@ export const SERVICE_DATA: Service[] = [
 export const UNIVERSITY_DATA = [
   {
     id: 1,
-    country: "canada",
+    country: "ireland",
+    image: "/ireland.png",
+    flag: "/ireland-flag.png",
+    description:
+      "Students and professionals choose Ireland for its high-quality universities, growing job market, and peaceful lifestyle.",
     universities: [
-      {
-        name: "St. Clair College - Downtown Campus",
-        image: "/St. Clair College.jpg",
-      },
-      {
-        name: "Algoma University – Brampton",
-        image: "/Algoma University.jpeg",
-      },
-      {
-        name: "Capilano University – North Vancouver",
-        image: "/Capilano University.jpeg",
-      },
-      {
-        name: "Crandall University",
-        image: "/Crandall Univer.jpeg",
-      },
+      "St. Clair College - Downtown Campus",
+      "Algoma University – Brampton",
+      "Capilano University – North Vancouver",
+      "Crandall University",
     ],
   },
   {
     id: 2,
     country: "united kingdom",
+    image: "/uk.jpg",
+    flag: "/uk-flag.jpg",
+    description:
+      "The UK offers world-class education, diverse career opportunities, and a multicultural environment. With rich history and modern innovation.",
     universities: [
-      {
-        name: "Coventry University",
-        image: "/Coventry University.jpeg",
-      },
-      {
-        name: "Kingston University London",
-        image: "/Kingston University.jpg",
-      },
-      {
-        name: "London Metropolitan University",
-        image: "/London Metropolitan.jpeg",
-      },
-      {
-        name: "Brunel University London",
-        image: "/Brunel University.jpg",
-      },
+      "Coventry University",
+      "Kingston University London",
+      "London Metropolitan University",
+      "Brunel University London",
     ],
   },
   {
     id: 3,
-    country: "USA",
+    country: "new zealand",
+    image: "/new-zealand.png",
+    flag: "/nz-flag.png",
+    description:
+      "New Zealand provides a safe, nature-filled environment with excellent universities and a strong work-life balance.",
     universities: [
-      {
-        name: "Southern New Hampshire University",
-        image: "/Southern New Hampshire University.jpeg",
-      },
-      {
-        name: "University of Arizona",
-        image: "/University of Arizona.jpeg",
-      },
-      {
-        name: "Southeast Missouri State University",
-        image: "/Southeast Missouri State University.jpg",
-      },
-      {
-        name: "Tennessee Tech University",
-        image: "/Tennessee Tech Universi.jpeg",
-      },
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
+    ],
+  },
+  {
+    id: 4,
+    country: "australia",
+    image: "/australia.jpg",
+    flag: "/australia-flag.svg",
+    description:
+      "Australia is known for its high standard of living, global-ranking universities, and steady demand for skilled professionals.",
+    universities: [
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
+    ],
+  },
+  {
+    id: 5,
+    country: "finland",
+    image: "/finland.jpg",
+    flag: "/finland-flag.png",
+    description:
+      "It offers a peaceful environment, modern infrastructure, and strong opportunities for students and researchers.",
+    universities: [
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
+    ],
+  },
+  {
+    id: 6,
+    country: "latvia",
+    image: "/latvia.png",
+    flag: "/latvia-flag.png",
+    description:
+      "With its strategic European location, the country provides opportunities for international students and young professionals.",
+    universities: [
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
+    ],
+  },
+  {
+    id: 7,
+    country: "netherlands",
+    image: "/netherlands.jpg",
+    flag: "/netherlands-flag.png",
+    description:
+      "Its modern lifestyle and international community make it a popular destination for students and skilled workers.",
+    universities: [
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
+    ],
+  },
+  {
+    id: 8,
+    country: "lithuania",
+    image: "/lithuania.jpg",
+    flag: "/lithuania-flag.png",
+    description:
+      "Lithuania provides affordable education, fast-growing digital industries, and a welcoming environment for newcomers.",
+    universities: [
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
+    ],
+  },
+  {
+    id: 9,
+    country: "malta",
+    image: "/malta.jpg",
+    flag: "/malta-flag.png",
+    description:
+      "Malta combines a warm climate, English-speaking environment, and growing job opportunities in gaming, fintech, and tourism.",
+    universities: [
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
+    ],
+  },
+  {
+    id: 10,
+    country: "more schengen destinations",
+    image: "/Algoma University.jpeg",
+    flag: "/schengen.png",
+    universities: [
+      "Southern New Hampshire University",
+      "University of Arizona",
+      "Southeast Missouri State University",
+      "Tennessee Tech University",
     ],
   },
 ];
@@ -496,7 +546,7 @@ export const FOOTER_DATA: FooterSection[] = [
     id: 3,
     label: "Contact",
     contacts: [
-      "+94 75 112 81 5895",
+      "+94 75 949 4999 - +94 75 949 4444",
       "contact@marylanconsultancy.lk",
       "135, 2nd Floor, Tisara Plaza, Dutugamunu Street, Kohuwala, Nugegoda, Sri Lanka",
     ],

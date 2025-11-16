@@ -48,7 +48,7 @@ export default function Home() {
         </div>
         <div className="w-full">
           <Image
-            src="/hero-image-2.png"
+            src="/hero-image.png"
             width={945}
             height={707}
             quality={100}

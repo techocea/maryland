@@ -1,31 +1,67 @@
-import { Card, CardContent, CardFooter } from "@/components/ui/card";
-import { UNIVERSITY_DATA } from "@/utils/constants";
-import Image from "next/image";
 import React from "react";
+import Image from "next/image";
+import { UNIVERSITY_DATA } from "@/utils/constants";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
+import { ArrowRight, Globe, SendHorizonal } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 const page = () => {
   return (
-    <main className="py-10 px-8 xl:mx-auto w-full">
-      <div className="flex flex-col space-y-20">
-        {UNIVERSITY_DATA.map((item) => (
-          <div key={item.id}>
-            <h2 className="capitalize font-semibold text-muted-foreground text-2xl">
-              {item.country}
-            </h2>
-            <div className="mt-10 grid lg:grid-cols-4 sm:grid-cols-2 lg:gap-6 sm:gap-3 grid-cols-1 gap-2">
-              {item.universities.map((uni, idx) => (
-                <Card className="rounded-none pb-0" key={idx}>
-                  <CardContent className="w-full h-[340px] relative">
-                    <Image src={uni.image} fill alt={uni.name} className="absolute object-cover" />
-                  </CardContent>
-                  <CardFooter className="px-0 text-center flex items-center justify-center pt-2">
-                    <p className="text-sm font-medium">{uni.name}</p>
-                  </CardFooter>
-                </Card>
-              ))}
-            </div>
-          </div>
-        ))}
+    <main className="">
+      <div className="py-10 px-8 xl:mx-auto w-full flex flex-col text-center gap-4">
+        <div className="flex items-center justify-center gap-2 text-primary">
+          <SendHorizonal size={20} />
+          <h1 className="text-lg uppercase tracking-wide font-extrabold">
+            Study Destinations
+          </h1>
+          <Globe size={20} />
+        </div>
+        <h2 className="lg:text-4xl sm:text-3xl text-xl tracking-wider font-black">
+          Explore Your Future Across
+          <br /> the Globe
+        </h2>
+      </div>
+      <div className="mb-10 grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1">
+        {UNIVERSITY_DATA.map((item) => {
+          return (
+            <React.Fragment key={item.id}>
+              <div className="relative bg-primary py-16 px-10 flex flex-col justify-between">
+                <div className="relative z-10">
+                  <div className="w-12 h-12">
+                    <Image
+                      src={item.flag || ""}
+                      width={50}
+                      height={30}
+                      alt={item.country}
+                      className="rounded-full w-12 h-12 object-cover"
+                    />
+                  </div>
+                  <h3 className="capitalize text-2xl font-bold text-white my-4">
+                    {item.country}
+                  </h3>
+                  <p className="text-sm text-white mb-4 leading-loose">
+                    {item.description}
+                  </p>
+                  <Button
+                    variant="ghost"
+                    className="text-white text-sm font-semibold"
+                  >
+                    Read More <SendHorizonal />
+                  </Button>
+                </div>
+              </div>
+              <div className="relative h-[500px] w-full">
+                <Image
+                  src={item.image || ""}
+                  width={500}
+                  height={500}
+                  alt={item.country}
+                  className="object-cover w-full h-full"
+                />
+              </div>
+            </React.Fragment>
+          );
+        })}
       </div>
     </main>
   );
