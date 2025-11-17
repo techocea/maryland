@@ -7,14 +7,16 @@ const Partnerships = () => {
             <Image
                 src="/top-partner.jpeg"
                 alt="Top Partner"
-                width={250}
+                width={180}
                 height={250}
+                className="max-w-full h-auto"
             />
             <Image
                 src="/partner-logos.jpeg"
                 alt="Partner Logos"
-                width={1200}
+                width={1000}
                 height={500}
+                className="max-w-full h-auto"
             />
         </div>
     );

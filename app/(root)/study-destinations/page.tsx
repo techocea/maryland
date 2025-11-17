@@ -64,10 +64,10 @@ const page = () => {
               <div className="relative h-[500px] w-full">
                 <Image
                   src={item.image || ""}
-                  width={500}
-                  height={500}
+                  fill
+                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                   alt={item.country}
-                  className="object-cover w-full h-full"
+                  className="object-cover"
                 />
               </div>
             </React.Fragment>
