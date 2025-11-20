@@ -21,7 +21,7 @@ const CountryPage = async ({
     );
 
     if (!country) {
-        notFound(); // or return a fallback UI
+        notFound();
     }
 
     const displayName = slug
@@ -33,12 +33,13 @@ const CountryPage = async ({
             <div className="flex flex-col lg:flex-row gap-12">
                 {/* Left side - Image */}
                 <div className="flex-[2] flex flex-col gap-6">
-                    <div className="w-full h-96 bg-gray-200 rounded-lg overflow-hidden">
+                    <div className="w-48 h-48 bg-gray-200 rounded-lg overflow-hidden">
                         <Image
-                            src="/main-2.jpg"
-                            width={1100}
-                            height={600}
+                            src={country?.flag ?? ""}
+                            width={250}
+                            height={250}
                             alt={displayName}
+                            quality={100}
                             className="w-full h-full object-cover"
                         />
                     </div>
@@ -62,8 +63,8 @@ const CountryPage = async ({
                                         <React.Fragment key={item.id}>
                                             <div
                                                 className={`grid gap-2 ${item.universities.length > 10
-                                                        ? "sm:grid-cols-1 lg:grid-cols-2"
-                                                        : "grid-cols-1"
+                                                    ? "sm:grid-cols-1 lg:grid-cols-2"
+                                                    : "grid-cols-1"
                                                     }`}
                                             >
                                                 {item.universities.map((uni, idx) => (

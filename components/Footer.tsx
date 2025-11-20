@@ -1,7 +1,8 @@
 import React from "react";
 import { FOOTER_DATA } from "@/utils/constants";
 import { FooterSection } from "@/types";
-import { Facebook, Youtube } from "lucide-react";
+import { RiTiktokLine, RiYoutubeLine } from "react-icons/ri";
+import { FiFacebook } from "react-icons/fi";
 import Image from "next/image";
 import Link from "next/link";
 import { Separator } from "./ui/separator";
@@ -23,13 +24,19 @@ const Footer = () => {
               href="https://www.youtube.com/@marylandstudentvisa"
               className="hover:text-red-500 transition-all duration-150"
             >
-              <Youtube />
+              <RiYoutubeLine size={24} />
             </Link>
             <Link
               href="https://web.facebook.com/Marylandcmb"
               className="hover:text-blue-500 transition-all duration-150"
             >
-              <Facebook />
+              <FiFacebook size={24} />
+            </Link>
+            <Link
+              href="https://web.facebook.com/Marylandcmb"
+              className="hover:text-blue-500 transition-all duration-150"
+            >
+              <RiTiktokLine size={24} />
             </Link>
           </span>
         </div>

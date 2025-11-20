@@ -26,6 +26,7 @@ import { Input } from "./ui/input";
 import { Loader2 } from "lucide-react";
 import { toast } from "react-toastify";
 import { contactFormSchema, ContactFormData } from "@/app/lib/zodSchema";
+import { UNIVERSITY_DATA } from "@/utils/constants";
 
 const ContactForm = () => {
   const router = useRouter();
@@ -138,16 +139,17 @@ const ContactForm = () => {
                   <Select onValueChange={field.onChange}>
                     <FormLabel>Destination</FormLabel>
                     <SelectTrigger>
-                      <SelectValue placeholder="USA" />
+                      <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
-                      <SelectItem value="USA">USA</SelectItem>
-                      <SelectItem value="Australia">Australia</SelectItem>
-                      <SelectItem value="Canada">Canada</SelectItem>
-                      <SelectItem value="New Zealand">New Zealand</SelectItem>
-                      <SelectItem value="United Kingdom">
-                        United Kingdom
-                      </SelectItem>
+                      {UNIVERSITY_DATA.map((item) => (
+                        <SelectItem
+                          key={item.country}
+                          value={item.country.toUpperCase()}
+                        >
+                          {item.country.toUpperCase()}
+                        </SelectItem>
+                      ))}
                     </SelectContent>
                     <FormMessage>{errors.destination?.message}</FormMessage>
                   </Select>
@@ -162,7 +164,7 @@ const ContactForm = () => {
                   <Select onValueChange={field.onChange}>
                     <FormLabel>Area of Study</FormLabel>
                     <SelectTrigger>
-                      <SelectValue placeholder="Medicine" />
+                      <SelectValue placeholder="Select" />
                     </SelectTrigger>
                     <SelectContent>
                       <SelectItem value="Engineering">Engineering</SelectItem>

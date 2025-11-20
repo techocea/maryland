@@ -13,7 +13,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "./ui/dropdown-menu";
-import { Menu } from "lucide-react";
+import { Globe, Menu } from "lucide-react";
 
 const Navbar = () => {
   const pathname = usePathname();
@@ -48,8 +48,10 @@ const Navbar = () => {
           ))}
         </div>
         <div className="w-fit flex items-center justify-center gap-x-4">
-          <Button asChild>
-            <Link href="/sign-up">Portal</Link>
+          <Button size="lg" asChild>
+            <Link href="/sign-up">
+              <Globe />
+              Portal</Link>
           </Button>
           {/* Mobile Nav */}
           <div className="lg:hidden">

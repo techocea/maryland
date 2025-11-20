@@ -7,7 +7,7 @@ import Image from "next/image";
 
 const WhyUs = () => {
   return (
-    <main className="min-h-full py-20 sm:px-4 lg:px-10">
+    <main className="min-h-full lg:max-w-6xl px-4 sm:px-6 lg:px-10 mb-12 w-full mx-auto lg:py-12">
       <div className="flex flex-col items-center justify-center text-center lg:text-left gap-y-4 px-4 w-full">
         <div className="flex flex-col gap-y-4 text-center items-center justify-center">
           <h1 className="sub-heading">why choose us?</h1>

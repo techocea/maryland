@@ -151,11 +151,6 @@ export const GALLERY: GalleryImage[] = [
         alt: "griffith fair 4",
       },
       {
-        id: 23,
-        src: "/griffith-fair5.JPG",
-        alt: "griffith fair 5",
-      },
-      {
         id: 24,
         src: "/griffith-fair6.JPG",
         alt: "griffith fair 6",
@@ -282,7 +277,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 1,
     saying:
-      "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
+      "Leaving home felt like walking into fog, but the team cleared every doubt before it became a problem. Visa, university shortlist, accommodation—everything flowed step by step. Studying in the UK felt impossible until they showed me how possible it actually was.",
     avatar: "/testimonial1.jpeg",
     name: "venuja pethmin",
     university: "University of Melbourne",
@@ -290,7 +285,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 2,
     saying:
-      "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
+      "I used to think studying abroad was only for privileged students. They broke that myth in the first meeting. They helped me find scholarships, guided me through applications, and kept reminding me I’m capable of more than I think. Now I’m in Melbourne, doing work I never imagined.",
     avatar: "/testimonial2.jpeg",
     name: "isuru masinghe",
     university: "University of Melbourne",
@@ -298,7 +293,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 3,
     saying:
-      "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
+      "I didn’t just get paperwork support—I got direction. Every time I got stuck, they checked in like mentors, not agents. Thanks to them, I’m studying in Canada and working part-time in a field I love.",
     avatar: "/testimonial3.jpeg",
     name: "kanushka nanayakkara",
     university: "University of Melbourne",
@@ -306,7 +301,7 @@ export const TESTIMONIALS: Testimonial[] = [
   {
     id: 4,
     saying:
-      "Lorem ipsum dolor sit amet consectetur. Pulvinar scelerisque commodo imperdiet mattis interdum justo nisl volutpat. Lacus enim dui lectus vitae.",
+      "The entire process felt scientific—every choice explained, every risk measured. That gave me confidence. My admission in Germany came through without a single document returned for correction. That precision changed everything.",
     avatar: "/testimonial4.jpeg",
     name: "hashmi sathnara",
     university: "University of Melbourne",
@@ -657,7 +652,7 @@ export const UNIVERSITY_DATA = [
   },
   {
     id: 10,
-    country: "more schengen destinations",
+    country: "more european destinations",
     image: "/Algoma University.jpeg",
     flag: "/schengen.png",
     universities: [
@@ -710,7 +705,7 @@ export const FOOTER_DATA: FooterSection[] = [
     id: 3,
     label: "Contact",
     contacts: [
-      "+94 75 949 4999 - +94 75 949 4444",
+      "075 949 4999 / 075 949 4444 / 0112 820 294",
       "contact@marylandconsultancy.lk",
       "135, 2nd Floor, Tisara Plaza, Dutugamunu Street, Kohuwala, Nugegoda, Sri Lanka",
     ],

@@ -1,4 +1,4 @@
-import mongoose from "mongoose"
+import mongoose from "mongoose";
 
 const connectDB = async () => {
   try {
@@ -7,7 +7,7 @@ const connectDB = async () => {
       console.log("db connected");
     }
   } catch (error) {
-    console.log(error);
+    console.log("Error connecting to database", error);
   }
 };
 

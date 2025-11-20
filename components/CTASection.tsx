@@ -13,7 +13,7 @@ const CTASection = () => {
             Ready to Start Your Study Abroad Journey?
           </h2>
         </CardTitle>
-        <p className="text-white font-medium text-center text-base max-w-2xl">
+        <p className="text-white font-medium text-center text-sm max-w-2xl">
           Connect with us on WhatsApp for instant support and guidance
           throughout your educational journey abroad.
         </p>

@@ -13,7 +13,7 @@ import CTASection from "@/components/CTASection";
 
 const AboutPage = () => {
   return (
-    <main className="">
+    <main className="w-full min-h-screen flex flex-col mb-16 lg:mb-20">
       <div className="relative h-80 md:h-96 lg:min-h-[80vh] flex items-center justify-center">
         <Image
           src="/about-banner.png"
@@ -28,8 +28,10 @@ const AboutPage = () => {
           About Us
         </div>
       </div>
+
       <DirectorMessage />
       <WhyUs />
+
       <div className="flex items-center justify-center text-center px-4 pb-20 lg:py-20">
         <div className="max-w-[900px] flex flex-col gap-4">
           <h3 className="sub-heading">about the student visa</h3>
@@ -55,7 +57,7 @@ const AboutPage = () => {
               your journey is simplified
             </h3>
           </div>
-          <div className="grid lg:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-4 mt-4 sm:mt-8 lg:mt-12">
+          <div className="grid lg:grid-cols-4 sm:grid-cols-2 px-3 grid-cols-2 gap-4 mt-4 sm:mt-8 lg:mt-12">
             {SERVICE_DATA.map((item) => (
               <Card
                 key={item.id}
@@ -83,7 +85,9 @@ const AboutPage = () => {
         </div>
       </div>
 
-      <CTASection />
+      <div className="px-4">
+        <CTASection />
+      </div>
     </main>
   );
 };
