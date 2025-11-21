@@ -1,5 +1,9 @@
-/** @type {import('next').NextConfig} */
-const nextConfig = {
+import type { NextConfig } from "next";
+
+const nextConfig: NextConfig = {
+  turbopack: {
+    // ...
+  },
   images: {
     remotePatterns: [
       {
@@ -10,9 +14,6 @@ const nextConfig = {
   },
   typescript: {
     ignoreBuildErrors: process.env.NODE_ENV === "production",
-  },
-  eslint: {
-    ignoreDuringBuilds: process.env.NODE_ENV === "production",
   },
 };
 

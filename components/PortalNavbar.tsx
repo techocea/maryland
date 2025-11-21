@@ -9,13 +9,9 @@ import {
 } from "./ui/dropdown-menu";
 import { User } from "lucide-react";
 import { Separator } from "./ui/separator";
-import { useSession } from "next-auth/react";
 import SignOutButton from "./SignOutButton";
 
 const PortalNavbar = () => {
-  const { data: session } = useSession();
-  console.log(session);
-
   return (
     <header className="p-2 sm:px-4 sm:py-2 md:px-2 lg:py-4 lg:px-10 shadow-lg">
       <div className="flex items-center justify-between  w-full">
@@ -28,7 +24,7 @@ const PortalNavbar = () => {
             alt="maryland consultancy"
           />
         </div>
-        {session && (
+        {/* {session && (
           <DropdownMenu>
             <DropdownMenuTrigger className="flex gap-x-2 items-center">
               <User className="bg-secondary w-8 h-8 rounded-full text-muted-foreground" />{" "}
@@ -47,7 +43,7 @@ const PortalNavbar = () => {
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
-        )}
+        )} */}
       </div>
     </header>
   );

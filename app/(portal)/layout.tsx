@@ -1,12 +1,10 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import "../globals.css";
+// @ts-ignore: No type declarations for CSS import
+import "@/app/globals.css";
 import PortalNavbar from "@/components/PortalNavbar";
 import AuthFooter from "@/components/AuthFooter";
-import { AuthProvider } from "../providers/authProvider";
-
-import { auth } from "@/auth";
 
 const raleway = Raleway({
   subsets: ["latin"],
@@ -24,16 +22,13 @@ export default async function WelcomePortalLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const session = await auth();
   return (
-    <AuthProvider session={session}>
-      <html lang="en">
-        <body className={`${raleway.className} antialiased`}>
-          <PortalNavbar />
-          {children}
-          <AuthFooter />
-        </body>
-      </html>
-    </AuthProvider>
+    <html lang="en">
+      <body className={`${raleway.className} antialiased`}>
+        <PortalNavbar />
+        {children}
+        <AuthFooter />
+      </body>
+    </html>
   );
 }

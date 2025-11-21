@@ -39,7 +39,7 @@ export const BentoGridItem = ({
     return (
         <div
             className={cn(
-                "group/bento row-span-1 relative flex flex-col justify-between space-y-4 rounded-xl border border-[rgba(255,255,255,0.1)] shadow-lg shadow-primary/10 bg-accent p-4 transition duration-200 hover:shadow-xl dark:border-white/[0.2] dark:bg-black dark:shadow-none",
+                "group/bento row-span-1 relative flex flex-col justify-between space-y-4 rounded-xl border border-[rgba(255,255,255,0.1)] shadow-lg shadow-primary/10 bg-accent p-4 transition duration-200 hover:shadow-xl dark:shadow-none",
                 className
             )}
         >
@@ -64,7 +64,7 @@ export const BentoGridItem = ({
 
                 <div className="font-sans text-sm font-medium text-muted-foreground">{saying}</div>
             </div>
-            <div className="flex items-center jsutify-center gap-2">
+            <div className="flex items-center justify-start text-left gap-4">
                 <div className="rounded-full w-10 h-10 flex items-center justify-center">
                     <img src={avatar} alt={name + university} className="rounded-full w-10 h-10 object-contain" />
                 </div>

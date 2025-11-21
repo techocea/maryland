@@ -15,7 +15,7 @@ const page = () => {
           <div className="flex-1">
             <ContactForm />
           </div>
-          <div className="w-full flex-1 hidden lg:flex flex-col space-y-4 rounded-xl bg-primary-foreground text-white">
+          <div className="w-full flex-1 hidden lg:flex flex-col space-y-4 rounded-xl bg-primary text-white">
             <div className="w-full h-auto bg-none text-white rounded-xl px-2 lg:px-8 py-4">
               <h3 className="font-semibold">Contact Us</h3>
               <p className="text-sm">24/7 Customer Support</p>

@@ -1,10 +1,12 @@
 import React from "react";
 import type { Metadata } from "next";
 import { Raleway } from "next/font/google";
-import "../globals.css";
+// @ts-ignore: No type declarations for CSS import
+import "@/app/globals.css";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
 import { ToastContainer } from "react-toastify";
+// @ts-ignore: No type declarations for CSS import
 import "react-toastify/dist/ReactToastify.css";
 
 const raleway = Raleway({
